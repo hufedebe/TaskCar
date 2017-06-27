@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_inicio"
+        android:icon="@drawable/ic_home"
+        android:title="@string/Menu_Inicio"
+        />
+    <item android:id="@+id/menu_citas"
+        android:icon="@drawable/ic_date"
+        android:title="@string/Menu_Cita"
+        />
+    <item android:id="@+id/menu_auxilioMecanico"
+        android:icon="@drawable/ic_auxilio"
+        android:title="@string/Menu_AuxilioMecanico"
+        />
+    <item android:id="@+id/menu_concesionarios"
+        android:icon="@drawable/ic_concecionario"
+        android:title="@string/Menu_Concesionario"
+        />
+    <item android:id="@+id/menu_showRoom"
+        android:icon="@drawable/ic_showroom"
+        android:title="@string/Menu_Showroom"
+        />
+
+
+
+
+
+</menu>

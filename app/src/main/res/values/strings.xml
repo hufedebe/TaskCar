@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TaskCar</string>
+    <string name="ApplicationName">TaskCar</string>
+    <!--Nombres del Menú-->
+    <string name="Menu_Cita">Citas</string>
+    <string name="Menu_AuxilioMecanico">Auxilio Mecánico</string>
+    <string name="Menu_HistoriaVehicular">Historia Vehicular</string>
+    <string name="Menu_Concesionario">Concecionarios</string>
+    <string name="Menu_Showroom">Show Room</string>
+    <string name="Menu_Inicio">Inicio</string>
+</resources>
