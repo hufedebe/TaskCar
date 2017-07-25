@@ -8,4 +8,7 @@
     <string name="Menu_Concesionario">Concecionarios</string>
     <string name="Menu_Showroom">Show Room</string>
     <string name="Menu_Inicio">Inicio</string>
+    <string name="Menu_Salir">Salir</string>
+    <string name="facebook_app_id">433181847066006</string>
+
 </resources>

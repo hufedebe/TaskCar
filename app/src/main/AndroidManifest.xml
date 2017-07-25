@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.taskcar">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
+        <activity android:name=".CitasActivity" />
+        <activity android:name=".AuxilioMecanicoActivity" />
+        <activity android:name=".ShowroomActivity" />
+        <activity android:name=".TallerActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".RegisterMainActivity" />
+        <activity android:name=".VehiculosActivity" />
+        <activity android:name=".RegistrarVehiculo" />
+        <activity android:name=".RegisterSubActivity" />
+        <activity android:name=".DCitaSecond" />
+        <activity android:name=".DRegisterVehicle" />
+        <activity android:name=".DVisualizarVehicle" />
+        <activity android:name=".DSelectionServicios"></activity>
     </application>
 
 </manifest>

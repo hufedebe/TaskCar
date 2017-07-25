@@ -22,7 +22,10 @@
         android:title="@string/Menu_Showroom"
         />
 
-
+    <item android:id="@+id/menu_salir"
+        android:icon="@drawable/ic_close"
+        android:title="@string/Menu_Salir"
+        />
 
 
 

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+
     ViewPager viewPager;
     customSwip  customSwip;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+         String usuarioExiste = "none";
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,13 +42,28 @@ public class MainActivity extends AppCompatActivity {
         customSwip=new customSwip(this);
         viewPager.setAdapter(customSwip);
 
-        final ArrayList<MenuList> menuLists = new ArrayList<MenuList>();
-        menuLists.add(new MenuList("Iniciar Sesion",R.drawable.ic_iniciarsesion));
-        menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
-        menuLists.add(new MenuList("Auxilio Mecánico", R.drawable.ic_auxilio));
-        menuLists.add(new MenuList("Concesionarios", R.drawable.ic_concecionario));
-        menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
 
+        //validación del usuario
+        usuarioExiste = getIntent().getStringExtra("usuario");
+
+        final ArrayList<MenuList> menuLists = new ArrayList<MenuList>();
+
+        if (usuarioExiste == "one") {
+            menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
+            menuLists.add(new MenuList("Auxilio Mecánico", R.drawable.ic_auxilio));
+            menuLists.add(new MenuList("Concesionarios", R.drawable.ic_concecionario));
+            menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
+            menuLists.add(new MenuList("Salir", R.drawable.ic_showroom));
+
+        } else{
+
+            menuLists.add(new MenuList("Iniciar Sesión", R.drawable.ic_iniciarsesion));
+            menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
+            menuLists.add(new MenuList("Auxilio Mecánico", R.drawable.ic_auxilio));
+            menuLists.add(new MenuList("Concesionarios", R.drawable.ic_concecionario));
+            menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
+            menuLists.add(new MenuList("Salir", R.drawable.ic_close));
+        }
 
         MenuList_Adapter adapterMenu = new MenuList_Adapter(this, menuLists, R.color.colorPrimary);
 
@@ -59,14 +75,26 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 MenuList menuList = menuLists.get(position);
+                switch(position){
+                    case 0: Intent registerActivity = new Intent(MainActivity.this, RegisterActivity.class);
+                            startActivity(registerActivity);
+                            break;
+                    case 1: Intent citaActivity = new Intent(MainActivity.this, CitasActivity.class);
+                        startActivity(citaActivity);
+                        break;
+                    case 2: Intent auxilioMecanicoActivity = new Intent(MainActivity.this, AuxilioMecanicoActivity.class);
+                        startActivity(auxilioMecanicoActivity);
+                        break;
+                    case 3: Intent tallerActivity = new Intent(MainActivity.this, TallerActivity.class);
+                        startActivity(tallerActivity);
+                        break;
+                    case 4: Intent showRoomActivity = new Intent(MainActivity.this, ShowroomActivity.class);
+                        startActivity(showRoomActivity);
+                        break;
 
-                if (position ==1){
-                       Intent registerActivity = new Intent(MainActivity.this, RegisterActivity.class);
-                    startActivity(registerActivity);
                 }
-
-
 
             }
         });

@@ -58,7 +58,7 @@ public class MenuList_Adapter extends ArrayAdapter {
 
         View textContainer = listItemView.findViewById(R.id.text_container);
         int color = ContextCompat.getColor(getContext(),amImageResourceId);
-        textContainer.setBackgroundColor(-1);
+        //textContainer.setBackgroundColor(-1);
         //iconView.setImageResource(currentWord.getmImageResourceId());
 
 
