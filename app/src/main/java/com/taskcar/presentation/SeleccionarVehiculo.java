@@ -29,7 +29,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
 
 
         //Data dummy para visualizar una cita
-        carLists.add(new CarEntity("YX123","Nissan","GTX", R.drawable.ic_dcar));
+        carLists.add(new CarEntity("YX123","Nissan","GTL", R.drawable.ic_dcar));
 
 
 
