@@ -1,4 +1,4 @@
-package com.taskcar.data;
+package com.taskcar.data.entity;
 
 /**
  * Created by Hudeya on 18/06/2017.

@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.taskcar.MainActivity">
+    tools:context="com.taskcar.presentation.MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,12 +18,8 @@
             app:navigationIcon="@drawable/ic_menu"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             />
-        <!--
-        <FrameLayout
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-            -->
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300dp">
@@ -38,17 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:id="@+id/list"
                 >
-
             </ListView>
-
         </LinearLayout>
-
     </LinearLayout>
     <!--requerimiento que el primer item sea el contenido principal-->
     <android.support.design.widget.NavigationView
@@ -59,9 +51,5 @@
         app:menu="@menu/drawer"
         app:headerLayout="@layout/app_header"
         />
-
-
-
-
 
 </android.support.v4.widget.DrawerLayout>

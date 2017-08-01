@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.taskcar.MainActivity">
+    tools:context="com.taskcar.presentation.MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?colorPrimary"
+
             app:navigationIcon="@drawable/back_navigation"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -38,7 +39,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="5dp">
             <ListView xmlns:android="http://schemas.android.com/apk/res/android"
 
                 android:layout_width="match_parent"

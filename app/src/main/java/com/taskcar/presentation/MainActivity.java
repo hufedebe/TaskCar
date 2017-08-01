@@ -1,4 +1,4 @@
-package com.taskcar;
+package com.taskcar.presentation;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -14,8 +14,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.taskcar.AuxilioMecanicoActivity;
+import com.taskcar.R;
+import com.taskcar.RegisterActivity;
+import com.taskcar.ShowroomActivity;
+import com.taskcar.TallerActivity;
 import com.taskcar.adapter.MenuList_Adapter;
-import com.taskcar.data.MenuList;
+import com.taskcar.customSwip;
+import com.taskcar.data.entity.MenuList;
 
 import java.util.ArrayList;
 
@@ -25,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
 
     ViewPager viewPager;
-    customSwip  customSwip;
+    com.taskcar.customSwip customSwip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         String usuarioExiste = "none";
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,19 +49,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(customSwip);
 
 
-        //validación del usuario
-        usuarioExiste = getIntent().getStringExtra("usuario");
-
         final ArrayList<MenuList> menuLists = new ArrayList<MenuList>();
 
-        if (usuarioExiste == "one") {
-            menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
-            menuLists.add(new MenuList("Auxilio Mecánico", R.drawable.ic_auxilio));
-            menuLists.add(new MenuList("Concesionarios", R.drawable.ic_concecionario));
-            menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
-            menuLists.add(new MenuList("Salir", R.drawable.ic_showroom));
-
-        } else{
 
             menuLists.add(new MenuList("Iniciar Sesión", R.drawable.ic_iniciarsesion));
             menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             menuLists.add(new MenuList("Concesionarios", R.drawable.ic_concecionario));
             menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
             menuLists.add(new MenuList("Salir", R.drawable.ic_close));
-        }
+
 
         MenuList_Adapter adapterMenu = new MenuList_Adapter(this, menuLists, R.color.colorPrimary);
 
@@ -93,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
                     case 4: Intent showRoomActivity = new Intent(MainActivity.this, ShowroomActivity.class);
                         startActivity(showRoomActivity);
                         break;
-
+                    case 5:
+                        finish();
+                        break;
                 }
 
             }

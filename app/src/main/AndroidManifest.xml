@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
         <activity
             android:name=".RegisterActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
-        <activity android:name=".CitasActivity" />
+        <activity android:name=".presentation.CitasActivity" />
         <activity android:name=".AuxilioMecanicoActivity" />
         <activity android:name=".ShowroomActivity" />
         <activity android:name=".TallerActivity" />
@@ -32,12 +32,13 @@
 
         <activity android:name=".RegisterMainActivity" />
         <activity android:name=".VehiculosActivity" />
-        <activity android:name=".RegistrarVehiculo" />
+        <activity android:name=".presentation.RegistrarVehiculo" />
         <activity android:name=".RegisterSubActivity" />
         <activity android:name=".DCitaSecond" />
         <activity android:name=".DRegisterVehicle" />
         <activity android:name=".DVisualizarVehicle" />
-        <activity android:name=".DSelectionServicios"></activity>
+        <activity android:name=".DSelectionServicios" />
+        <activity android:name=".presentation.SeleccionarVehiculo"></activity>
     </application>
 
 </manifest>

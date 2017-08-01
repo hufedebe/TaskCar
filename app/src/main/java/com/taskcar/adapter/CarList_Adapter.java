@@ -1,7 +1,6 @@
 package com.taskcar.adapter;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.taskcar.R;
-import com.taskcar.data.entity.MenuList;
+import com.taskcar.data.entity.CarEntity;
+import com.taskcar.data.entity.CitaEntity;
 
 import java.util.ArrayList;
 
 /**
- * Created by Hudeya on 27/06/2017.
+ * Created by Hudeya on 1/08/2017.
  */
 
-public class MenuList_Adapter extends ArrayAdapter {
-   private int amImageResourceId;
-    public MenuList_Adapter (Context context, ArrayList<MenuList> menuList, int mImageResourceId ){
-        super(context, 0 , menuList);
+public class CarList_Adapter extends ArrayAdapter {
+
+    private int amImageResourceId;
+    public CarList_Adapter (Context context, ArrayList<CarEntity> carEntity, int mImageResourceId ){
+        super(context, 0 , carEntity);
         amImageResourceId =mImageResourceId;
 
     }
@@ -33,29 +34,33 @@ public class MenuList_Adapter extends ArrayAdapter {
 
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item, parent, false);
+                    R.layout.list_item_vehiculo, parent, false);
         }
 
         // Get the {@link AndroidFlavor} object located at this position in the list
-        MenuList currentMenu = (MenuList) getItem(position);
+        CarEntity currentCar = (CarEntity) getItem(position);
 
-        // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView menuTextView = (TextView) listItemView.findViewById(R.id.menu_text_view);
-        // Get the version number from the current AndroidFlavor object and
-        // set this text on the number TextView
-        menuTextView.setText(currentMenu.getmName());
 
+        TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
+        TextView marca = (TextView) listItemView.findViewById(R.id.marca_text_view);
+        TextView modelo = (TextView) listItemView.findViewById(R.id.modelo_text_view);
+
+
+
+        placa.setText(currentCar.getPlaca());
+        marca.setText(currentCar.getMarca());
+        modelo.setText(currentCar.getModelo());
 
 
         ImageView iconView = (ImageView)listItemView.findViewById(R.id.image);
-        if (currentMenu.hasImage()){
-            iconView.setImageResource(currentMenu.getmImageResourceId());
+        if (currentCar.hasImage()){
+            iconView.setImageResource(currentCar.getmImageResourceId());
         }else{
             iconView.setVisibility(View.GONE);
         }
 
-        View textContainer = listItemView.findViewById(R.id.text_container);
-        int color = ContextCompat.getColor(getContext(),amImageResourceId);
+        // View textContainer = listItemView.findViewById(R.id.text_container);
+        //int color = ContextCompat.getColor(getContext(),amImageResourceId);
         //textContainer.setBackgroundColor(-1);
         //iconView.setImageResource(currentWord.getmImageResourceId());
 
@@ -65,8 +70,5 @@ public class MenuList_Adapter extends ArrayAdapter {
         return listItemView;
 
     }
-
-
-
 
 }

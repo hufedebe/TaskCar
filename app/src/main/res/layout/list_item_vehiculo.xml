@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="@dimen/list_item_height"
-    android:background="@color/tan_background">
+    android:background="@color/colorPrimaryDark"
+    android:descendantFocusability="blocksDescendants" >
 
     <ImageView
         android:id="@+id/image"
@@ -19,7 +20,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
         <ImageButton
             android:id="@+id/modificar"
             android:layout_width="match_parent"
@@ -49,26 +51,35 @@
         >
 
         <TextView
-            android:id="@+id/tarea_text_view"
+            android:id="@+id/placa_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="bottom"
+            android:gravity="left"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            tools:text="titulo"/>
+            tools:text="Placa"/>
         <TextView
-            android:id="@+id/date_text_view"
+            android:id="@+id/marca_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="top"
+            android:gravity="left"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            tools:text="dia"/>
-
+            tools:text="Marca"/>
+        <TextView
+            android:id="@+id/modelo_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:text="Modelo"/>
     </LinearLayout>
 
 
