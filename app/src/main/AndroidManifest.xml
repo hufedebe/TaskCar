@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".presentation.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +19,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".presentation.Activity.RegisterActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
-        <activity android:name=".presentation.CitasActivity" />
-        <activity android:name=".AuxilioMecanicoActivity" />
+        <activity android:name=".presentation.Activity.CitasActivity" />
         <activity android:name=".ShowroomActivity" />
         <activity android:name=".TallerActivity" />
 
@@ -30,15 +29,19 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".RegisterMainActivity" />
+        <activity android:name=".presentation.Activity.RegisterMainActivity" />
         <activity android:name=".VehiculosActivity" />
-        <activity android:name=".presentation.RegistrarVehiculo" />
+        <activity android:name=".presentation.Activity.RegistrarVehiculo" />
         <activity android:name=".RegisterSubActivity" />
         <activity android:name=".DCitaSecond" />
         <activity android:name=".DRegisterVehicle" />
         <activity android:name=".DVisualizarVehicle" />
-        <activity android:name=".DSelectionServicios" />
-        <activity android:name=".presentation.SeleccionarVehiculo"></activity>
+        <activity android:name=".presentation.Activity.SeleccionarVehiculo" />
+        <activity android:name=".presentation.Activity.SeleccionarServicio" />
+        <activity android:name=".presentation.Activity.SeleccionarTaller" />
+        <activity android:name=".presentation.Activity.SeleccionarFechaHora" />
+        <activity android:name=".presentation.Activity.Observaciones" />
+        <activity android:name=".presentation.Activity.TestDrive"></activity>
     </application>
 
 </manifest>

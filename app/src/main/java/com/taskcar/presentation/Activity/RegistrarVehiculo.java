@@ -1,4 +1,4 @@
-package com.taskcar.presentation;
+package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

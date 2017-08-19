@@ -1,25 +1,21 @@
-package com.taskcar.presentation;
+package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.taskcar.R;
 import com.taskcar.adapter.CarList_Adapter;
-import com.taskcar.adapter.CitaList_Adapter;
 import com.taskcar.data.entity.CarEntity;
-import com.taskcar.data.entity.CitaEntity;
 
 import java.util.ArrayList;
 
 public class SeleccionarVehiculo extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +49,12 @@ public class SeleccionarVehiculo extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // When clicked, show a toast with the TextView text
-                Toast.makeText(SeleccionarVehiculo.this, "" + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SeleccionarVehiculo.this, "" + position, Toast.LENGTH_SHORT).show();
+
+
+                    Intent seleccionarServicio = new Intent(SeleccionarVehiculo.this, SeleccionarServicio.class);
+                    startActivity(seleccionarServicio);
+
             }
         });
 

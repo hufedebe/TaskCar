@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/swip_image_view"/>
+    <TextView
+        android:id="@+id/text_showRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        />
+    <TextView
+        android:id="@+id/text2_showRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aros de Aleación: "
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motor: "
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seguridad: "
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transmisión: "
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginTop="30dp"
+       android:orientation="horizontal"
+       android:background="@color/colorPrimaryDark">
+       <ImageView
+           android:id="@+id/image_test_drive"
+           android:layout_gravity="center"
+           android:layout_width="@dimen/list_item_height"
+           android:layout_height="@dimen/list_item_height"
+           android:src="@drawable/ic_testdrive"
+           android:paddingRight="16dp"
+           android:paddingLeft="16dp"
+           android:clickable="true"
+           />
+
+       <LinearLayout
+           android:id="@+id/text_container"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:paddingLeft="16dp"
+
+           >
+
+           <TextView
+               android:id="@+id/test_drive_text"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:textAppearance="?android:textAppearanceMedium"
+               android:textColor="@android:color/white"
+               android:textSize="25sp"
+               android:textStyle="bold"
+               android:clickable="true"
+              android:text="Quiero un Test Drive"/>
+
+
+       </LinearLayout>
+
+
+   </LinearLayout>
+</LinearLayout>

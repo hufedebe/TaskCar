@@ -17,7 +17,7 @@
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bienvenido &quot;Hugo Deudor&quot; !!"
+            android:text="Bienvenido &quot;Telmo&quot; !!"
             android:textSize="25dp"
             android:textColor="@color/colorPrimaryDark"
             />

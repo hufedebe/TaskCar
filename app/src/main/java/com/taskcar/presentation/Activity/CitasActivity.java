@@ -1,4 +1,4 @@
-package com.taskcar.presentation;
+package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -6,19 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.taskcar.R;
 import com.taskcar.adapter.CitaList_Adapter;
 import com.taskcar.data.entity.CitaEntity;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 public class CitasActivity extends AppCompatActivity {
 
@@ -51,15 +44,23 @@ public class CitasActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent seleccionarVehiculo = new Intent(CitasActivity.this, SeleccionarVehiculo.class);
+                seleccionarVehiculo.putExtra("TipoActividad","Servicio");
                 startActivity(seleccionarVehiculo);
 
 
             }
         });
 
+
+
     }
 
+    @Override
+    public void onBackPressed(){
+           Intent regresarMenu = new Intent(CitasActivity.this,MainActivity.class);
+           startActivity(regresarMenu);
 
+    }
 
 
 }

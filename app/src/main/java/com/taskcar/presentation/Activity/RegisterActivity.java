@@ -1,4 +1,4 @@
-package com.taskcar;
+package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -7,7 +7,11 @@ import android.hardware.SensorEventListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.taskcar.DVisualizarVehicle;
+import com.taskcar.R;
 
 public class RegisterActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -16,12 +20,22 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        TextView login = (TextView) findViewById(R.id.link_create);
+        TextView registrarse = (TextView) findViewById(R.id.link_create);
+        Button login = (Button)findViewById(R.id.btn_login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerMain = new Intent(RegisterActivity.this, DVisualizarVehicle.class);
+                 Intent loguearse  = new Intent(RegisterActivity.this, MainActivity.class);
+                 startActivity(loguearse);
+            }
+        });
+
+
+        registrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerMain = new Intent(RegisterActivity.this, RegisterMainActivity.class);
                 startActivity(registerMain);
             }
         });

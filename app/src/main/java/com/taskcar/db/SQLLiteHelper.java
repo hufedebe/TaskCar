@@ -10,8 +10,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLLiteHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME ="TaskCar.db" ;
+    //Logcat tag
+    private static final String LOG = "SQLLiteHelper";
+
+    //Versión de la base de datos
     private static final int DB_VERSION=1;
+    //Nombre de la Base de datos
+    private static final String DB_NAME ="TaskCar" ;
+
+    //Nombre de las tablas
+    private static final String TABLE_CITA = "cita";
+    private static final String TABLE_VEHICULO = "vehiculo";
+
+
+
     //Tabla de Citas
     private static final String Table_Name = "Cita";
     private static final String col_1 = "IDCITA" ;
