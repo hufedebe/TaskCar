@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.taskcar.R;
-import com.taskcar.RegisterSubActivity;
 
 public class Observaciones extends AppCompatActivity {
 
@@ -18,16 +17,17 @@ public class Observaciones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observaciones);
+        //int value = getIntent().getExtras().getInt("Mantenimiento");
 
         LinearLayout tipo_mantenimiento = (LinearLayout) findViewById(R.id.tipo_mantenimiento);
         final Button btn_continuar = (Button) findViewById(R.id.btn_continuar);
-/*
-        if (tipoMantenimiento==false){
-            tipo_mantenimiento.setVisibility(View.VISIBLE);
-        }else {
+
+       // if (value==1){
+            //tipo_mantenimiento.setVisibility(View.VISIBLE);
+        //}else {
             tipo_mantenimiento.setVisibility(View.GONE);
-        }
-*/
+       // }
+
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override

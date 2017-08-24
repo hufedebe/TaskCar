@@ -32,7 +32,7 @@
         <activity android:name=".presentation.Activity.RegisterMainActivity" />
         <activity android:name=".VehiculosActivity" />
         <activity android:name=".presentation.Activity.RegistrarVehiculo" />
-        <activity android:name=".RegisterSubActivity" />
+        <activity android:name=".presentation.Activity.RegisterSubActivity" />
         <activity android:name=".DCitaSecond" />
         <activity android:name=".DRegisterVehicle" />
         <activity android:name=".DVisualizarVehicle" />

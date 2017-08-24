@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.taskcar.R;
-import com.taskcar.RegisterSubActivity;
 
 public class RegisterMainActivity extends AppCompatActivity {
 

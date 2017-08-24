@@ -1,6 +1,7 @@
 package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -40,7 +41,38 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //-----Navigation View ---------//
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.menu_inicio:
+
+                        break;
+                    case R.id.menu_citas:
+                        Intent citaActivity = new Intent(MainActivity.this, CitasActivity.class);
+                        startActivity(citaActivity);
+                        break;
+                    case R.id.menu_talleres:
+                        Intent tallerActivity = new Intent(MainActivity.this, SeleccionarTaller.class);
+                        startActivity(tallerActivity);
+                        break;
+                    case R.id.menu_showRoom:
+                        Intent showRoomActivity = new Intent(MainActivity.this, ShowroomActivity.class);
+                        startActivity(showRoomActivity);
+                        break;
+                    case R.id.menu_salir:
+                       finish();
+                        break;
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
 
         viewPager=(ViewPager)findViewById(R.id.viewPager);
         customSwip=new customSwip(this);
@@ -87,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(showRoomActivity);
                         break;
                     case 5:
-                        finish();
+                       finish();
                         break;
                 }
 

@@ -15,8 +15,8 @@ import android.widget.TextView;
 public class customSwip extends PagerAdapter {
 
 
-    private int[] imageResources ={R.drawable.carshowroom1,R.drawable.carshowroom2,R.drawable.carshowroom3,
-                                    R.drawable.carshowroom4};
+    private int[] imageResources ={R.drawable.changanbenni,R.drawable.citroenberlingo,R.drawable.citroenc4,
+                                    R.drawable.citroenc4cactus,R.drawable.citroencelysse};
     private Context ctx;
     private LayoutInflater layoutInflater;
 
