@@ -21,9 +21,9 @@ public class CitaList_Adapter extends ArrayAdapter {
 
 
     private int amImageResourceId;
-    public CitaList_Adapter (Context context, ArrayList<CitaEntity> citaEntity, int mImageResourceId ){
+    public CitaList_Adapter (Context context, ArrayList<CitaEntity> citaEntity ){
         super(context, 0 , citaEntity);
-        amImageResourceId =mImageResourceId;
+
 
     }
 
@@ -56,12 +56,7 @@ public class CitaList_Adapter extends ArrayAdapter {
         horario.setText(currentCita.getHorario());
         placa.setText(currentCita.getPlaca());
 
-        ImageView iconView = (ImageView)listItemView.findViewById(R.id.image);
-        if (currentCita.hasImage()){
-            iconView.setImageResource(currentCita.getmImageResourceId());
-        }else{
-            iconView.setVisibility(View.GONE);
-        }
+
 
        // View textContainer = listItemView.findViewById(R.id.text_container);
         //int color = ContextCompat.getColor(getContext(),amImageResourceId);

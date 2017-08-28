@@ -35,7 +35,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
             -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buenas tardes Ronald, estas son tus citas pendientes:"
+                android:textSize="20dp"/>
 
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

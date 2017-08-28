@@ -41,7 +41,8 @@
         <activity android:name=".presentation.Activity.SeleccionarTaller" />
         <activity android:name=".presentation.Activity.SeleccionarFechaHora" />
         <activity android:name=".presentation.Activity.Observaciones" />
-        <activity android:name=".presentation.Activity.TestDrive"></activity>
+        <activity android:name=".presentation.Activity.TestDrive" />
+        <activity android:name=".presentation.Activity.ShowRoomMain"></activity>
     </application>
 
 </manifest>

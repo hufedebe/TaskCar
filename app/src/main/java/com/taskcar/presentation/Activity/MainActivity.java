@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     case 3: Intent tallerActivity = new Intent(MainActivity.this, SeleccionarTaller.class);
                              startActivity(tallerActivity);
                         break;
-                    case 4: Intent showRoomActivity = new Intent(MainActivity.this, ShowroomActivity.class);
+                    case 4: Intent showRoomActivity = new Intent(MainActivity.this, ShowRoomMain.class);
                             startActivity(showRoomActivity);
                         break;
                     case 5:

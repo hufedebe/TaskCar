@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.taskcar.presentation.Activity.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"
+            app:navigationIcon="@drawable/back_navigation"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="@string/Menu_Showroom"
+                android:layout_gravity="center"
+                android:textColor="#FFFFFF"/>
+
+
+        </android.support.v7.widget.Toolbar>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            android:background="#E0E0E0">
+
+            <RelativeLayout
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/cutomborder2"
+
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/image_changan"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:src="@drawable/ic_concecionario"
+                        android:clickable="true"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Changan"
+                        android:textSize="25dp"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/cutomborder2">
+
+                    <ImageView
+                        android:id="@+id/image_citroen"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:layout_gravity="center_horizontal"
+                        android:clickable="true"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:src="@drawable/ic_concecionario" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Citroen"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+   <!--otra lista -->
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/image_ds"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:src="@drawable/ic_concecionario"
+                        android:clickable="true"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DS"
+                        android:textSize="25dp"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_fonton"
+                        android:clickable="true"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:src="@drawable/ic_concecionario" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Fonton"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--otra lista -->
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/image_great"
+                        android:clickable="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:src="@drawable/ic_concecionario"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Great Wall"
+                        android:textSize="25dp"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hawall"
+                        android:clickable="true"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:src="@drawable/ic_concecionario" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Hawall"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--otra lista -->
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/image_jac"
+                        android:clickable="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:src="@drawable/ic_concecionario"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Jac"
+                        android:textSize="25dp"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_mazda"
+                        android:clickable="true"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:src="@drawable/ic_concecionario" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Mazda"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--otra lista -->
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/image_suzuki"
+                        android:clickable="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:src="@drawable/ic_concecionario"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Suzuki"
+                        android:textSize="25dp"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/cutomborder2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_todos"
+                        android:clickable="true"
+                        android:layout_width="@dimen/list_item_height"
+                        android:layout_height="@dimen/list_item_height"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:src="@drawable/ic_concecionario" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Todos"
+                        android:textColor="#FFFFFF"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <!--requerimiento que el primer item sea el contenido principal-->
+
+</ScrollView>

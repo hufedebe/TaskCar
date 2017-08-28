@@ -25,11 +25,11 @@ public class CitasActivity extends AppCompatActivity {
 
         //Data dummy para visualizar una cita
         citaLists.add(new CitaEntity("Javier Prado","Av. Javier Prado 5635 - La Molina","03/02/07 - 10:00am",
-                                        "YX1234", R.drawable.ic_date));
+                                        "YX1234"));
 
 
 
-        CitaList_Adapter adapterCita = new CitaList_Adapter(this, citaLists, R.color.colorPrimary);
+        CitaList_Adapter adapterCita = new CitaList_Adapter(this, citaLists);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapterCita);

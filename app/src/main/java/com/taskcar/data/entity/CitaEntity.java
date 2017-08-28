@@ -70,12 +70,12 @@ public class CitaEntity {
 
 
     //constructor
-    public CitaEntity ( String cTaller, String cDireccion, String cHorario, String cPlaca, int mImageResourceId){
+    public CitaEntity ( String cTaller, String cDireccion, String cHorario, String cPlaca){
         this.nombreTaller = cTaller;
         this.direccion= cDireccion;
         this.horario= cHorario;
         this.placa= cPlaca;
-        this.mImageResourceId = mImageResourceId;
+
 
     }
 
