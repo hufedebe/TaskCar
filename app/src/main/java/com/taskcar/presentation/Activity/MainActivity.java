@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1: Intent citaActivity = new Intent(MainActivity.this, CitasActivity.class);
                             startActivity(citaActivity);
                         break;
-                    case 2: Intent historiaActivity = new Intent(MainActivity.this, CitasActivity.class);
+                    case 2: Intent historiaActivity = new Intent(MainActivity.this, HistoriaVehicular.class);
                             startActivity(historiaActivity);
                         break;
                     case 3: Intent tallerActivity = new Intent(MainActivity.this, SeleccionarTaller.class);

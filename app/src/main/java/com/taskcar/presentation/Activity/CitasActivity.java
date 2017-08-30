@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.taskcar.R;
 import com.taskcar.adapter.CitaList_Adapter;
@@ -34,9 +35,9 @@ public class CitasActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapterCita);
 
+        TextView add_cita = (TextView) findViewById(R.id.txt_Cita);
 
-
-        FloatingActionButton add_cita = (FloatingActionButton) findViewById(R.id.fab_add_news);
+      //  FloatingActionButton add_cita = (FloatingActionButton) findViewById(R.id.fab_add_news);
 
 
         add_cita.setOnClickListener(new View.OnClickListener() {
