@@ -54,8 +54,11 @@ public class sTab2Fragment extends Fragment{
                 txtReparacionMantenimiento.setTextColor(Color.parseColor("#E0E0E0"));
 
 
-                Intent intent1 = new Intent(getActivity(), Observaciones.class);
-                startActivity(intent1);
+                Intent mantenimiento = new Intent(getActivity(), Observaciones.class);
+                mantenimiento.putExtra("key1","1");
+                mantenimiento.putExtra("key2","0");
+                mantenimiento.putExtra("key3","0");
+                getActivity().startActivity(mantenimiento);
             }
         });
 
@@ -73,10 +76,13 @@ public class sTab2Fragment extends Fragment{
                 txtReparacionMantenimiento.setTextColor(Color.parseColor("#E0E0E0"));
 
                 //Toast.makeText(getActivity(),"Testing Button CLick 1", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(getActivity(), Observaciones.class);
+                Intent reparacion = new Intent(getActivity(), Observaciones.class);
+                reparacion.putExtra("key2","1");
+                reparacion.putExtra("key1","0");
+                reparacion.putExtra("key3","0");
+                getActivity().startActivity(reparacion);
 
-                //intent2.putExtra("Mantenimiento",false);
-                startActivity(intent2);
+
             }
         });
 
@@ -93,9 +99,11 @@ public class sTab2Fragment extends Fragment{
                 txtReparacion.setTextColor(Color.parseColor("#E0E0E0"));
 
                 //
-                Intent intent3 = new Intent(getActivity(), Observaciones.class);
-                intent3.putExtra("Mantenimiento",1);
-                startActivity(intent3);
+                Intent mantenimiento2 = new Intent(getActivity(), Observaciones.class);
+                mantenimiento2.putExtra("key3","1");
+                mantenimiento2.putExtra("key1","0");
+                mantenimiento2.putExtra("key2","0");
+                getActivity().startActivity(mantenimiento2);
             }
         });
 
