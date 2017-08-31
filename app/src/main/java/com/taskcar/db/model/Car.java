@@ -7,25 +7,40 @@ package com.taskcar.db.model;
 public class Car {
     private int id;
     private String placa;
+    private String dni;
     private String marca;
     private String modelo;
-    private int anio;
+    private String anio;
 
-    public Car() {
+
+    public Car (){
 
     }
+
+    public Car (int id, String placa, String dni, String marca, String modelo, String anio){
+        this.id = id ;
+        this.placa= placa;
+        this.dni = dni;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+    }
+
+    public Car (String placa, String dni, String marca, String modelo , String anio){
+        this.placa = placa;
+        this.dni = dni;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+    }
+
     public Car (String placa, String marca, String modelo){
-        this.setPlaca(placa);
-        this.setMarca(marca);
-        this.setModelo(modelo);
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo= modelo;
 
     }
-    public Car (int id, String placa, String marca, String modelo){
-        this.setId(id);
-        this.setPlaca(placa);
-        this.setMarca(marca);
-        this.setModelo(modelo);
-    }
+
 
     public int getId() {
         return id;
@@ -41,6 +56,14 @@ public class Car {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getMarca() {
@@ -59,11 +82,11 @@ public class Car {
         this.modelo = modelo;
     }
 
-    public int getAnio() {
+    public String getAnio() {
         return anio;
     }
 
-    public void setAnio(int anio) {
+    public void setAnio(String anio) {
         this.anio = anio;
     }
 }
