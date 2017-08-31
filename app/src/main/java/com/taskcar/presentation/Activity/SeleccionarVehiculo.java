@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,14 @@ public class SeleccionarVehiculo extends AppCompatActivity {
 
         final ArrayList<CarEntity> carLists = new ArrayList<CarEntity>();
 
+        Toolbar mtoolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //Data dummy para visualizar una cita
         carLists.add(new CarEntity("YX123","Nissan","GTL", R.drawable.ic_dcar));

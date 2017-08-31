@@ -4,7 +4,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.TabHost;
 
 import com.taskcar.R;
@@ -15,6 +17,9 @@ import com.taskcar.presentation.Fragment.sTab2Fragment;
 public class SeleccionarServicio extends AppCompatActivity {
 
     private static final String TAG = "SeleccionarActivity";
+
+
+
 
     private SelectionsPageAdapter mSectionsPageAdapter;
 
@@ -35,6 +40,16 @@ public class SeleccionarServicio extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+        Toolbar mtoolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager){
