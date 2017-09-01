@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.taskcar.R;
+import com.taskcar.db.helper.DatabaseHelper;
+import com.taskcar.db.model.Car;
 
 public class RegistrarVehiculo extends AppCompatActivity {
 
@@ -17,6 +19,8 @@ public class RegistrarVehiculo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_vehiculo);
+
+        final DatabaseHelper db = new DatabaseHelper(this);
 
         marcaVehiculo = (EditText) findViewById(R.id.marca_vehiculo);
         modeloVehiculo = (EditText) findViewById(R.id.modelo_vehiculo);
@@ -28,6 +32,9 @@ public class RegistrarVehiculo extends AppCompatActivity {
         registrarVehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+               db.addCar(new Car(placaVehiculo.getText().toString(), marcaVehiculo.getText().toString(),modeloVehiculo.getText().toString()));
+
                 Intent seleccionarVehiculo = new Intent(RegistrarVehiculo.this, SeleccionarVehiculo.class);
                 startActivity(seleccionarVehiculo);
 

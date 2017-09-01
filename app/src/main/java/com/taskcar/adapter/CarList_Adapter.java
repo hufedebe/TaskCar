@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.taskcar.R;
 import com.taskcar.data.entity.CarEntity;
 import com.taskcar.data.entity.CitaEntity;
+import com.taskcar.db.model.Car;
 
 import java.util.ArrayList;
 
@@ -21,9 +22,9 @@ import java.util.ArrayList;
 public class CarList_Adapter extends ArrayAdapter {
 
     private int amImageResourceId;
-    public CarList_Adapter (Context context, ArrayList<CarEntity> carEntity, int mImageResourceId ){
+    public CarList_Adapter (Context context, ArrayList<Car> carEntity ){
         super(context, 0 , carEntity);
-        amImageResourceId =mImageResourceId;
+        //amImageResourceId =mImageResourceId;
 
     }
 
@@ -38,7 +39,7 @@ public class CarList_Adapter extends ArrayAdapter {
         }
 
         // Get the {@link AndroidFlavor} object located at this position in the list
-        CarEntity currentCar = (CarEntity) getItem(position);
+        Car currentCar = (Car) getItem(position);
 
 
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
@@ -53,12 +54,12 @@ public class CarList_Adapter extends ArrayAdapter {
 
 
         ImageView iconView = (ImageView)listItemView.findViewById(R.id.image);
-        if (currentCar.hasImage()){
+       /* if (currentCar.hasImage()){
             iconView.setImageResource(currentCar.getmImageResourceId());
         }else{
             iconView.setVisibility(View.GONE);
         }
-
+*/
         // View textContainer = listItemView.findViewById(R.id.text_container);
         //int color = ContextCompat.getColor(getContext(),amImageResourceId);
         //textContainer.setBackgroundColor(-1);
