@@ -1,17 +1,22 @@
 package com.taskcar.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.taskcar.R;
 import com.taskcar.data.entity.CarEntity;
 import com.taskcar.data.entity.CitaEntity;
+import com.taskcar.db.helper.DatabaseHelper;
 import com.taskcar.db.model.Car;
+import com.taskcar.presentation.Activity.SeleccionarVehiculo;
 
 import java.util.ArrayList;
 
@@ -20,11 +25,16 @@ import java.util.ArrayList;
  */
 
 public class CarList_Adapter extends ArrayAdapter {
-
+    private DatabaseHelper dbHelper;
+    private Context context ;
+   // final DatabaseHelper db = new DatabaseHelper(this);
     private int amImageResourceId;
     public CarList_Adapter (Context context, ArrayList<Car> carEntity ){
         super(context, 0 , carEntity);
         //amImageResourceId =mImageResourceId;
+        this.dbHelper = new DatabaseHelper(context.getApplicationContext());
+        this.context = context;
+        //this.values = values;
 
     }
 
@@ -39,7 +49,7 @@ public class CarList_Adapter extends ArrayAdapter {
         }
 
         // Get the {@link AndroidFlavor} object located at this position in the list
-        Car currentCar = (Car) getItem(position);
+        final Car currentCar = (Car) getItem(position);
 
 
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
@@ -54,20 +64,30 @@ public class CarList_Adapter extends ArrayAdapter {
 
 
         ImageView iconView = (ImageView)listItemView.findViewById(R.id.image);
-       /* if (currentCar.hasImage()){
-            iconView.setImageResource(currentCar.getmImageResourceId());
-        }else{
-            iconView.setVisibility(View.GONE);
-        }
-*/
-        // View textContainer = listItemView.findViewById(R.id.text_container);
-        //int color = ContextCompat.getColor(getContext(),amImageResourceId);
-        //textContainer.setBackgroundColor(-1);
-        //iconView.setImageResource(currentWord.getmImageResourceId());
 
+        //Cogiendo botoenes:
+        final ImageButton modificarBtn = (ImageButton)listItemView.findViewById(R.id.modificar);
+        final ImageButton eliminarBtn = (ImageButton)listItemView.findViewById(R.id.eliminar);
 
-        // Return the whole list item layout (containing 2 TextViews and an ImageView)
-        // so that it can be shown in the ListView
+        modificarBtn.setTag(position);
+        modificarBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        eliminarBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                dbHelper.deleteCar(currentCar);
+                Intent intent=new Intent(context, SeleccionarVehiculo.class);
+                context.startActivity(intent);
+
+            }
+        });
+
         return listItemView;
 
     }
