@@ -43,6 +43,19 @@
         <item>95,000 km</item>
         <item>100,000 km</item>
         <item>OTROS</item>
-
     </string-array>
+    <string-array name="MarcasVehiculo">
+        <item>Selecciona una Marca</item>
+        <item>Changan</item>
+        <item>Citroen</item>
+        <item>DS</item>
+        <item>Foton</item>
+        <item>Great Wall</item>
+        <item>Haval</item>
+        <item>Jac</item>
+        <item>Mazda</item>
+        <item>Suzuki</item>
+    </string-array>
+
+
 </resources>
