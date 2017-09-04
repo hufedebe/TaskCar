@@ -71,6 +71,7 @@ public class CitasActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
+
            Intent regresarMenu = new Intent(CitasActivity.this,MainActivity.class);
            startActivity(regresarMenu);
 
