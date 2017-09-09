@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.taskcar.R;
 import com.taskcar.adapter.CarList_Adapter;
@@ -32,7 +33,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
         setContentView(R.layout.activity_seleccionar_vehiculo);
 
         Toolbar mtoolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        TextView agregarAuto = (TextView) findViewById(R.id.txt_AgregarAuto);
         mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,9 +56,17 @@ public class SeleccionarVehiculo extends AppCompatActivity {
         listView.setAdapter(adapterCar);
 
         //Floating Buttont
-        FloatingActionButton add_vehiculo = (FloatingActionButton) findViewById(R.id.fab_add_news);
+        //FloatingActionButton add_vehiculo = (FloatingActionButton) findViewById(R.id.fab_add_news);
+        agregarAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent seleccionarVehiculo = new Intent(SeleccionarVehiculo.this, RegistrarVehiculo.class);
+                startActivity(seleccionarVehiculo);
+            }
+        });
 
 
+/*
         add_vehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +76,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
 
             }
         });
-
+*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // When clicked, show a toast with the TextView text
