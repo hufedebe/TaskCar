@@ -2,6 +2,7 @@ package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +26,9 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btn_generarCita.setBackgroundColor(Color.parseColor("#B71C1C"));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    finishAffinity();
+                }
                 Intent intent = new Intent(SeleccionarFechaHora.this, CitasActivity.class);
                 startActivity(intent);
             }

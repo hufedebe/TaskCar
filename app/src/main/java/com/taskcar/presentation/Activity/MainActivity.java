@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(showRoomActivity);
                         break;
                     case 5:
-                       finish();
+                        finish();
                         break;
                 }
 

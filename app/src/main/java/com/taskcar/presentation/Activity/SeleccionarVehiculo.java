@@ -109,5 +109,12 @@ public class SeleccionarVehiculo extends AppCompatActivity {
         return carLists;
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent regresarMenu = new Intent(SeleccionarVehiculo.this,CitasActivity.class);
+        startActivity(regresarMenu);
+
+    }
+
 
 }
