@@ -8,12 +8,31 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.taskcar.R;
+import com.taskcar.adapter.TallerList_Adapter;
+import com.taskcar.data.entity.tallerEntity;
+import com.taskcar.model.Taller;
+import com.taskcar.presentation.Activity.Observaciones;
 import com.taskcar.presentation.Activity.SeleccionarFechaHora;
+import com.taskcar.presentation.Activity.SeleccionarServicio;
 import com.taskcar.presentation.Activity.SeleccionarTaller;
+import com.taskcar.presentation.Activity.SeleccionarVehiculo;
+import com.taskcar.retrofit.AtencionVehicularAdapter;
+import com.taskcar.retrofit.Response.TalleresResponse;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Hudeya on 2/08/2017.
@@ -22,45 +41,65 @@ import com.taskcar.presentation.Activity.SeleccionarTaller;
 public class tTab1fragment extends Fragment {
 
     private static final String TAG = "TAB1Fragment";
-    private LinearLayout taller1;
-    private LinearLayout taller2;
-    private LinearLayout taller3;
-
+    final ArrayList<tallerEntity> tallerLists = new ArrayList<tallerEntity>();
+     ListView listView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ttab1_fragment,container,false);
 
-        taller1 = (LinearLayout) view.findViewById(R.id.taller_1);
+        obtenerDatosTalleres();
 
-        taller2 = (LinearLayout) view.findViewById(R.id.taller_2);
-
-        taller3 = (LinearLayout) view.findViewById(R.id.taller_3);
-
-        taller1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeleccionarFechaHora.class);
-                startActivity(intent);
-            }
-        });
-        taller2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeleccionarFechaHora.class);
-                startActivity(intent);
-            }
-        });
-        taller3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeleccionarFechaHora.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 
+    private void obtenerDatosTalleres(){
+        Call<TalleresResponse> call = AtencionVehicularAdapter.getApiService().getTalleres();
+        call.enqueue(new TalleresCallback());
+    }
+
+    private void poblarListaTalleres(ArrayList<Taller> talleres){
+        tallerLists.clear();
+        for (Taller r: talleres){
+            tallerLists.add(new tallerEntity(r.getNombreTaller(),r.getDireccionTaller()));
+
+        }
+        TallerList_Adapter adapterTaller = new TallerList_Adapter(getView().getContext(), tallerLists);
+
+        listView = (ListView) getView().findViewById(R.id.list);
+        listView.setAdapter(adapterTaller);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
+                Intent taller = new Intent(getActivity(), SeleccionarFechaHora.class);
+
+                getActivity().startActivity(taller);
+            }
+        });
+
+    }
+
+
+    class TalleresCallback implements Callback<TalleresResponse> {
+
+        @Override
+        public void onResponse(Call<TalleresResponse> call, Response<TalleresResponse> response) {
+            if (response.isSuccessful()){
+                TalleresResponse talleresResponse = response.body();
+                poblarListaTalleres(talleresResponse.getTalleres());
+
+            }else{
+                Toast.makeText(getApplicationContext(),"Error en el formato ", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<TalleresResponse> call, Throwable t) {
+            Toast.makeText(getApplicationContext(),"No hay conexión de Internet", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }

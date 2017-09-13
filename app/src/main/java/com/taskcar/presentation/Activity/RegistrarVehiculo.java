@@ -3,6 +3,7 @@ package com.taskcar.presentation.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,10 +12,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.taskcar.R;
 import com.taskcar.db.helper.DatabaseHelper;
 import com.taskcar.db.model.Car;
+import com.taskcar.model.VehiculoPost;
+import com.taskcar.retrofit.AtencionVehicularAdapter;
+import com.taskcar.retrofit.Response.VehiculoResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelectedListener {
 
@@ -32,7 +41,7 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
     ArrayAdapter<String> jacAdapter;
     ArrayAdapter<String> mazdaAdapter;
     ArrayAdapter<String> suzukiAdapter;
-
+    final DatabaseHelper db = new DatabaseHelper(this);
 
 
     String[] changan = {"Benni","Changancs75"};
@@ -58,7 +67,7 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_vehiculo);
 
-        final DatabaseHelper db = new DatabaseHelper(this);
+
 
         spineerVehiculo = (Spinner) findViewById(R.id.marca_spinner);
         spinnerModeloVehiculo = (Spinner) findViewById(R.id.modelo_spinner);
@@ -114,21 +123,50 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
                // final String textMarca = spinnerVehiculo.getSelectedItem().toString();
                 //String textMarca = registrarVehiculo.getTag().toString();
                 textModelo = spinnerModeloVehiculo.getSelectedItem().toString();
-               db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
+                VehiculoPost vehiculo2 = new VehiculoPost(placaVehiculo.getText().toString(),"12345678","1","1","1996");
+                Call<VehiculoResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarVehiculo(vehiculo2);
+                call.enqueue(new RegistrarVehiculoCallback());
 
-
-                Intent seleccionarVehiculo = new Intent(RegistrarVehiculo.this, SeleccionarVehiculo.class);
-                startActivity(seleccionarVehiculo);
 
 
             }
         });
 
-
-
-
     }
 
+    class RegistrarVehiculoCallback implements Callback<VehiculoResponse>{
+
+
+        @Override
+        public void onResponse(Call<VehiculoResponse> call, Response<VehiculoResponse> response) {
+            if(response.isSuccessful()){
+                VehiculoResponse vehiculoResponse = response.body();
+                if (vehiculoResponse.getMensaje().getStatus()==200){
+                    db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
+                    Toast.makeText(getApplicationContext(),"Se registró correctamente ", Toast.LENGTH_SHORT).show();
+
+                    Intent seleccionarVehiculo = new Intent(RegistrarVehiculo.this, SeleccionarVehiculo.class);
+                    startActivity(seleccionarVehiculo);
+                }else{
+                    Log.i("Retrofit", "post submitted to API." + response.body().toString());
+                    Toast.makeText(getApplicationContext(),vehiculoResponse.getMensaje().getStatus().toString(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }else{
+                Toast.makeText(getApplicationContext(),"Problemas Conexion", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<VehiculoResponse> call, Throwable t) {
+            Toast.makeText(getApplicationContext(),"Error en la estructura", Toast.LENGTH_SHORT).show();
+
+        }
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
