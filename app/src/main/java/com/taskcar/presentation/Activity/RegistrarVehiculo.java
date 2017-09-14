@@ -30,6 +30,8 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
     private EditText marcaVehiculo, modeloVehiculo, placaVehiculo;
     String textMarca;
     String textModelo;
+    String codigoMarca;
+    String codigoModelo;
     Button registrarVehiculo;
     Spinner spineerVehiculo, spinnerModeloVehiculo;
     ArrayAdapter<String> changanAdapter;
@@ -44,11 +46,11 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
     final DatabaseHelper db = new DatabaseHelper(this);
 
 
-    String[] changan = {"Benni","Changancs75"};
+    String[] changan = {"Benni","CS75"};
 
-    String[] citroen = {"Berlingo","C4","C4 Cactus", "Celysse"};
+    String[] citroen = {"Berlingo","C4","C4-Cactus", "C-Elysse"};
 
-    String[] ds = {"DS2","DS4"};
+    String[] ds = {"DS3","DS4"};
 
     String[] foton = {"Sauvana"};
 
@@ -123,11 +125,15 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
                // final String textMarca = spinnerVehiculo.getSelectedItem().toString();
                 //String textMarca = registrarVehiculo.getTag().toString();
                 textModelo = spinnerModeloVehiculo.getSelectedItem().toString();
-                VehiculoPost vehiculo2 = new VehiculoPost(placaVehiculo.getText().toString(),"12345678","1","1","1996");
-                Call<VehiculoResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarVehiculo(vehiculo2);
-                call.enqueue(new RegistrarVehiculoCallback());
-
-
+                setCodigoModelo();
+                if(placaVehiculo.getText().toString().length()==6){
+                    VehiculoPost registroVehiculo = new VehiculoPost(placaVehiculo.getText().toString(),"12345678",codigoMarca,codigoModelo,"1996");
+                    Call<VehiculoResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarVehiculo(registroVehiculo);
+                    call.enqueue(new RegistrarVehiculoCallback());
+                }else{
+                    Toast.makeText(getApplicationContext(),"La placa debe contener 6 dígitos ", Toast.LENGTH_LONG).show();
+                    
+                }
 
             }
         });
@@ -174,21 +180,30 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
         textMarca = spineerVehiculo.getSelectedItem().toString();
         if(position == 1){
             spinnerModeloVehiculo.setAdapter(changanAdapter);
+            codigoMarca = "1";
         }else if (position==2){
             spinnerModeloVehiculo.setAdapter(citroenAdapter);
+            codigoMarca = "2";
         }else if (position==3){
             spinnerModeloVehiculo.setAdapter(dsAdapter);
+            codigoMarca = "3";
         }else if (position==4){
             spinnerModeloVehiculo.setAdapter(fotonAdapter);
+            codigoMarca = "4";
         }else if (position==5){
+            codigoMarca = "5";
             spinnerModeloVehiculo.setAdapter(greatwallAdapter);
         }else if (position==6){
+            codigoMarca = "6";
             spinnerModeloVehiculo.setAdapter(havalAdapter);
         }else if (position==7){
+            codigoMarca = "7";
             spinnerModeloVehiculo.setAdapter(jacAdapter);
         }else if (position==8){
+            codigoMarca = "8";
             spinnerModeloVehiculo.setAdapter(mazdaAdapter);
         }else if (position==9){
+            codigoMarca = "9";
             spinnerModeloVehiculo.setAdapter(suzukiAdapter);
         }
 
@@ -196,6 +211,68 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void setCodigoModelo(){
+        //Modelo - Seteo de Codigo Modelo
+        if(textModelo=="Benni"){
+            codigoModelo="1";
+        }else if(textModelo=="CS75"){
+            codigoModelo="2";
+        }else if(textModelo=="Berlingo"){
+            codigoModelo="3";
+        }else if(textModelo=="C4"){
+            codigoModelo="4";
+        }else if(textModelo=="C4-Cactus"){
+            codigoModelo="5";
+        }else if(textModelo=="C-Elysse"){
+            codigoModelo="6";
+        }else if(textModelo=="DS3"){
+            codigoModelo="7";
+        }else if(textModelo=="DS4"){
+            codigoModelo="8";
+        }else if(textModelo=="Sauvana"){
+            codigoModelo="9";
+        }else if(textModelo=="C30"){
+            codigoModelo="10";
+        }else if(textModelo=="M4"){
+            codigoModelo="11";
+        }else if(textModelo=="Wingle-5"){
+            codigoModelo="12";
+        }else if(textModelo=="H2"){
+            codigoModelo="13";
+        }else if(textModelo=="H6"){
+            codigoModelo="14";
+        }else if(textModelo=="J4"){
+            codigoModelo="15";
+        }else if(textModelo=="Refine"){
+            codigoModelo="16";
+        }else if(textModelo=="S3"){
+            codigoModelo="17";
+        }else if(textModelo=="S5"){
+            codigoModelo="18";
+        }else if(textModelo=="Mazda-3"){
+            codigoModelo="19";
+        }else if(textModelo=="Mazda-5"){
+            codigoModelo="20";
+        }else if(textModelo=="Mazda-CX-5"){
+            codigoModelo="21";
+        }else if(textModelo=="Mazda-CX-9"){
+            codigoModelo="22";
+        }else if(textModelo=="All New Celerio"){
+            codigoModelo="23";
+        }else if(textModelo=="APV Furgon"){
+            codigoModelo="24";
+        }else if(textModelo=="Grand Nomade"){
+            codigoModelo="25";
+        }else if(textModelo=="Grand Vitara"){
+            codigoModelo="26";
+        }else if(textModelo=="Swift 1.4"){
+            codigoModelo="27";
+        }else if(textModelo=="Swift Sedan"){
+            codigoModelo="28";
+        }
 
     }
 }
