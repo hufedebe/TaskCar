@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.taskcar.R;
 import com.taskcar.adapter.TallerList_Adapter;
 import com.taskcar.data.entity.tallerEntity;
+import com.taskcar.db.model.Car;
 import com.taskcar.model.Taller;
 import com.taskcar.presentation.Activity.Observaciones;
 import com.taskcar.presentation.Activity.SeleccionarFechaHora;
@@ -61,19 +62,24 @@ public class tTab1fragment extends Fragment {
     private void poblarListaTalleres(ArrayList<Taller> talleres){
         tallerLists.clear();
         for (Taller r: talleres){
-            tallerLists.add(new tallerEntity(r.getNombreTaller(),r.getDireccionTaller()));
+            tallerLists.add(new tallerEntity(r.getAperturaNocturno(),r.getLatitud(),r.getCierreNocturno(),
+                                            r.getTelefonoTaller(),r.getAperturaExpress(),r.getAtencionesExpress(),
+                                            r.getAperturaDiurno(),r.getAtencionesNocturno(),r.getCierreExpress(),
+                                            r.getNombreTaller(),r.getLongitud(),r.getAtencionesDiurno(), r.getDireccionTaller(),
+                                            r.getIdTaller(),r.getCierreDiurno()));
 
         }
-        TallerList_Adapter adapterTaller = new TallerList_Adapter(getView().getContext(), tallerLists);
+        final TallerList_Adapter adapterTaller = new TallerList_Adapter(getView().getContext(), tallerLists);
 
         listView = (ListView) getView().findViewById(R.id.list);
         listView.setAdapter(adapterTaller);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
+                final Taller currentTaller = (Taller) adapterTaller.getItem(position);
                 Intent taller = new Intent(getActivity(), SeleccionarFechaHora.class);
-
+                taller.putExtra("apertura",currentTaller.getAperturaDiurno());
                 getActivity().startActivity(taller);
             }
         });

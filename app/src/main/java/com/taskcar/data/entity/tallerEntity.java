@@ -13,6 +13,7 @@ public class tallerEntity {
     private Integer atencionesExpress;
     private String aperturaDiurno;
     private Integer atencionesNocturno;
+
     private String cierreExpress;
     private String nombreTaller;
     private Float longitud;
@@ -22,6 +23,29 @@ public class tallerEntity {
     private String cierreDiurno;
 
     public tallerEntity(){
+
+    }
+
+    public tallerEntity(String aperturaNocturno, Float latitud, String cierreNocturno, Integer telefonoTaller,
+                        String aperturaExpress, Integer atencionesExpress,
+                        String aperturaDiurno, Integer atencionesNocturno,
+                        String cierreExpress, String nombreTaller, Float longitud,
+                        Integer atencionesDiurno, String direccionTaller, Integer idTaller, String cierreDiurno){
+        this.aperturaNocturno= aperturaNocturno;
+        this.latitud= latitud;
+        this.cierreNocturno=cierreNocturno;
+        this.telefonoTaller= telefonoTaller;
+        this.aperturaExpress= aperturaExpress;
+        this.atencionesExpress= atencionesExpress;
+        this.aperturaDiurno = aperturaDiurno;
+        this.atencionesNocturno = atencionesNocturno;
+        this.cierreExpress = cierreExpress;
+        this.nombreTaller = nombreTaller;
+        this.longitud = longitud;
+        this.atencionesDiurno = atencionesDiurno;
+        this.direccionTaller= direccionTaller;
+        this.idTaller=idTaller;
+        this.cierreDiurno=cierreDiurno;
 
     }
 

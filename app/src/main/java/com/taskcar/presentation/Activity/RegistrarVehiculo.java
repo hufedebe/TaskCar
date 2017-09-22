@@ -132,7 +132,7 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
                     call.enqueue(new RegistrarVehiculoCallback());
                 }else{
                     Toast.makeText(getApplicationContext(),"La placa debe contener 6 dígitos ", Toast.LENGTH_LONG).show();
-                    
+
                 }
 
             }

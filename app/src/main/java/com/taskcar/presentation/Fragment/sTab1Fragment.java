@@ -57,6 +57,7 @@ public class sTab1Fragment extends Fragment{
                 txtExpress.setTextColor(Color.parseColor("#E0E0E0"));
 
                 viewPager.setCurrentItem(1, true);
+
                 //Toast.makeText(getActivity(),"Testing Button CLick 1", Toast.LENGTH_SHORT).show();
             }
         });

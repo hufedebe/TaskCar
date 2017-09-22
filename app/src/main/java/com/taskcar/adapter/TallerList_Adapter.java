@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.taskcar.R;
 import com.taskcar.data.entity.tallerEntity;
+import com.taskcar.model.Taller;
 import com.taskcar.presentation.Activity.Observaciones;
 import com.taskcar.presentation.Activity.SeleccionarFechaHora;
 import com.taskcar.presentation.Activity.SeleccionarVehiculo;
@@ -40,7 +41,7 @@ public class TallerList_Adapter extends ArrayAdapter {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item_taller, parent, false);
         }
-        tallerEntity currentTaller = (tallerEntity) getItem(position);
+        final tallerEntity currentTaller = (tallerEntity) getItem(position);
 
         TextView nombreTaller = (TextView) listItemView.findViewById(R.id.txt_nombreTaller);
         TextView direccionTaller = (TextView) listItemView.findViewById(R.id.txt_direccion);
@@ -53,9 +54,12 @@ public class TallerList_Adapter extends ArrayAdapter {
         taller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
                 Intent reparacion = new Intent(getApplicationContext(), SeleccionarFechaHora.class);
 
+                reparacion.putExtra("apertura",currentTaller.getAperturaDiurno());
+                reparacion.putExtra("cierre", currentTaller.getCierreDiurno());
+                reparacion.putExtra("atenciones", currentTaller.getAtencionesDiurno().toString());
                 getApplicationContext().startActivity(reparacion);
                 //Intent intent=new Intent(context, SeleccionarFechaHora.class);
                 //context.startActivity(intent);

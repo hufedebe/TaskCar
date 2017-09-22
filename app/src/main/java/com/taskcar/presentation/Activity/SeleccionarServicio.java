@@ -18,9 +18,6 @@ public class SeleccionarServicio extends AppCompatActivity {
 
     private static final String TAG = "SeleccionarActivity";
 
-
-
-
     private SelectionsPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
