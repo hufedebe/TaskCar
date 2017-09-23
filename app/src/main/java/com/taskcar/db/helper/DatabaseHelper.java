@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.taskcar.db.model.Car;
+import com.taskcar.db.model.Cita;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_MARCA = "marcas";
     private static final String TABLE_MODELO = "modelos";
     private static final String TABLE_VEHICULO = "vehiculos";
+    private static final String TABLE_CITA = "citas";
 
     // Common column names
     private static final String KEY_ID = "id";
@@ -43,7 +45,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ID_MODELO = "modelo_id";
     private static final String KEY_ANIO = "anio";
 
+
+    //citas Table - column names
+    private static final String KEY_EVENTO = "id_evento";
+    private static final String KEY_TALLER = "idTaller";
+    private static final String KEY_NOMBRE_TALLER="nombreTaller";
+   // private static final String KEY_PLACA = "placa";
+    private static final String KEY_DESCRIPCION_TALLER = "direccionTaller";
+    private static final String KEY_FECHA_EVENTO = "diaHoraEvento";
+    private  static final String KEY_ID_SERVICIO = "idServicio";
+    private static  final String KEY_TIPO_SERVICIO = "tipoServicio";
+
+
     // Table Create Statements
+
+    private static  final String CREATE_TABLE_CITA = "CREATE TABLE "+ TABLE_CITA+ "("+KEY_ID+ " INTEGER PRIMARY KEY, "+
+                                                        KEY_EVENTO+" TEXT," + KEY_TALLER+ " TEXT,"+KEY_NOMBRE_TALLER+ " TEXT,"+ KEY_PLACA+" TEXT,"+
+                                                        KEY_DESCRIPCION_TALLER+" TEXT," + KEY_FECHA_EVENTO+ " TEXT,"+
+                                                        KEY_ID_SERVICIO+" TEXT,"+ KEY_TIPO_SERVICIO+ " TEXT" +")";
+
     // MARCA create statement
     private static final String CREATE_TABLE_MARCA = "CREATE TABLE "
             + TABLE_MARCA+ "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_DESCRIPCION
@@ -113,7 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_MODELO+ "("+ KEY_DESCRIPCION +") VALUES ('Swift Sedan')");
 
         db.execSQL(CREATE_TABLE_VEHICULO);
-
+        db.execSQL(CREATE_TABLE_CITA);
 
 
 
@@ -125,6 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MARCA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MODELO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VEHICULO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CITA);
 
         // create new tables
         onCreate(db);
@@ -134,7 +155,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * All CRUD(Create, Read, Update, Delete) Operations
      */
+    public  void addCita(Cita cita){
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_EVENTO,cita.getIdEvento());
+        values.put(KEY_TALLER,cita.getIdTaller());
+        values.put(KEY_TALLER, cita.getNombreTaller());
+        values.put(KEY_PLACA, cita.getPlaca()); // Contact Name
+        values.put(KEY_DESCRIPCION_TALLER,cita.getDireccionTaller());
+        values.put(KEY_FECHA_EVENTO, cita.getDiaHoraEvento());
+        values.put(KEY_ID_SERVICIO, cita.getIdServicio());
+        values.put (KEY_TIPO_SERVICIO, cita.getTipoServicio());
+
+        // Inserting Row
+        db.insert(TABLE_CITA, null, values);
+        db.close(); // Closing database connection
+
+    }
     // Adding new vehicule
     public void addCar(Car car) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -151,7 +189,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+    public  List<Cita> getAllCitas(){
+        List<Cita> citaList = new ArrayList<Cita>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_CITA;
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Cita cita = new Cita();
+                cita.setId(Integer.parseInt(cursor.getString(0)));
+                cita.setIdEvento(cursor.getString(1));
+                cita.setIdTaller(cursor.getString(2));
+                cita.setNombreTaller(cursor.getString(3));
+                cita.setPlaca(cursor.getString(4));
+                cita.setDireccionTaller(cursor.getString(5));
+                cita.setDiaHoraEvento(cursor.getString(6));
+                cita.setIdServicio(cursor.getString(7));
+                cita.setTipoServicio(cursor.getString(8));
+
+
+                // Adding contact to list
+                citaList.add(cita);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return citaList;
+
+
+    }
     // Getting All Vehiculos
     public List<Car> getAllCars() {
         List<Car> carList = new ArrayList<Car>();
@@ -188,6 +258,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteCita(Cita cita){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CITA, KEY_ID + " = ?",
+                new String[] { String.valueOf(cita.getId()) });
+        db.close();
+
+    }
     // Getting contacts Count
     /*
     public int getContactsCount() {

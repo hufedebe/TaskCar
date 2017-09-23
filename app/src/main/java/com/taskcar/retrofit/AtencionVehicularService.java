@@ -1,6 +1,8 @@
 package com.taskcar.retrofit;
 
+import com.taskcar.model.CitaPost;
 import com.taskcar.model.VehiculoPost;
+import com.taskcar.retrofit.Response.CitaResponse;
 import com.taskcar.retrofit.Response.TalleresResponse;
 import com.taskcar.retrofit.Response.VehiculoResponse;
 
@@ -16,11 +18,17 @@ import retrofit2.http.POST;
  */
 
 public interface AtencionVehicularService {
+
     @GET("listarTalleres")
     Call<TalleresResponse> getTalleres();
 
+    @POST("registrarCita")
+    Call<CitaResponse> postRegistrarCita(  @Body CitaPost citaPost);
 
-    @POST("registrarVehiculo")
-    Call<VehiculoResponse> postRegistrarVehiculo( @Body VehiculoPost vehiculoPost);
+   @POST("registrarVehiculos")
+   Call<VehiculoResponse> postRegistrarVehiculo( @Body VehiculoPost vehiculoPost);
+
+
+
 
 }

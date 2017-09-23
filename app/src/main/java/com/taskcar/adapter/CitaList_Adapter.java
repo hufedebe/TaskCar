@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.taskcar.R;
 import com.taskcar.data.entity.CitaEntity;
+import com.taskcar.db.model.Cita;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class CitaList_Adapter extends ArrayAdapter {
 
 
     private int amImageResourceId;
-    public CitaList_Adapter (Context context, ArrayList<CitaEntity> citaEntity ){
+    public CitaList_Adapter (Context context, ArrayList<Cita> citaEntity ){
         super(context, 0 , citaEntity);
 
 
@@ -38,7 +39,7 @@ public class CitaList_Adapter extends ArrayAdapter {
         }
 
         // Get the {@link AndroidFlavor} object located at this position in the list
-        CitaEntity currentCita = (CitaEntity) getItem(position);
+        Cita currentCita = (Cita) getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_number
       //  TextView menuTextView = (TextView) listItemView.findViewById(R.id.menu_text_view);
@@ -52,8 +53,8 @@ public class CitaList_Adapter extends ArrayAdapter {
 
 
         nombreTaller.setText(currentCita.getNombreTaller());
-        direccionTaller.setText(currentCita.getDireccion());
-        horario.setText(currentCita.getHorario());
+        direccionTaller.setText(currentCita.getDireccionTaller());
+        horario.setText(currentCita.getDiaHoraEvento());
         placa.setText(currentCita.getPlaca());
 
 

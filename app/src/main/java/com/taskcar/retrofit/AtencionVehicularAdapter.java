@@ -22,8 +22,18 @@ public class AtencionVehicularAdapter {
 
         //OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         //add logging as last interceptor
-        //httpClient.addInterceptor(logging);
+       // httpClient.addInterceptor(logging);
         // Creating the interceptor, and setting the log level
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+// set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+// add your other interceptors …
+
+// add logging as last interceptor
+        httpClient.addInterceptor(logging);  // <-- this is the important line!
+
 
         String baseUrl = "http://10.0.2.2:8084/AtencionVehicular/";
         if (API_SERVICE==null){
@@ -31,6 +41,7 @@ public class AtencionVehicularAdapter {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient.build())
                     .build();
             //.client(httpClient.build())
             Log.d("getTasksListHTTP", "Se añadio bien:"+baseUrl);

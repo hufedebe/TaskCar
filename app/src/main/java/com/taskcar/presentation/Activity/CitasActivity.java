@@ -11,13 +11,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.taskcar.R;
+import com.taskcar.adapter.CarList_Adapter;
 import com.taskcar.adapter.CitaList_Adapter;
 import com.taskcar.data.entity.CitaEntity;
+import com.taskcar.db.helper.DatabaseHelper;
+import com.taskcar.db.model.Car;
+import com.taskcar.db.model.Cita;
 
 import java.util.ArrayList;
 
 public class CitasActivity extends AppCompatActivity {
 
+    private ArrayList<Cita> citaLists = new ArrayList<Cita>();
+    final DatabaseHelper db = new DatabaseHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +40,22 @@ public class CitasActivity extends AppCompatActivity {
 
 
 
-        final ArrayList<CitaEntity> citaLists = new ArrayList<CitaEntity>();
+       // final ArrayList<CitaEntity> citaLists = new ArrayList<CitaEntity>();
+
 
 
         //Data dummy para visualizar una cita
-        citaLists.add(new CitaEntity("Javier Prado","Av. Javier Prado 5635 - La Molina","03/02/07 - 10:00am",
-                                        "YX1234"));
+        //citaLists.add(new CitaEntity("Javier Prado","Av. Javier Prado 5635 - La Molina","03/02/07 - 10:00am",
+         //                               "YX1234"));
 
+        citaLists.clear();
+        citaLists.addAll(db.getAllCitas());
+
+        //carLists.add(new CarEntity("YX123","Nissan","GTL", R.drawable.ic_dcar));
+
+
+
+     //   CarList_Adapter adapterCar = new CarList_Adapter(this, citaLists);
 
 
         CitaList_Adapter adapterCita = new CitaList_Adapter(this, citaLists);

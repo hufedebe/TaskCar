@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -17,16 +18,29 @@ import com.taskcar.adapter.CarList_Adapter;
 import com.taskcar.adapter.HorarioList_Adapter;
 import com.taskcar.data.entity.CitaEntity;
 import com.taskcar.data.entity.HorarioEntity;
+import com.taskcar.db.helper.DatabaseHelper;
+import com.taskcar.db.model.Car;
+import com.taskcar.db.model.Cita;
+import com.taskcar.model.CitaPost;
+import com.taskcar.model.VehiculoPost;
+import com.taskcar.retrofit.AtencionVehicularAdapter;
+import com.taskcar.retrofit.Response.CitaResponse;
+import com.taskcar.retrofit.Response.VehiculoResponse;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SeleccionarFechaHora extends AppCompatActivity {
 
     private Button btn_generarCita;
     String init, finit, minit,mfin;
     String aperturamin, cierremin;
-
+    final DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +133,15 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     finishAffinity();
                 }
+
+                CitaPost registroCita = new CitaPost("KIM789","07/09/2017 05:45 AM","1","1","E");
+                //CitaPost registroCita = new CitaPost("KIM789");
+                Call<CitaResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarCita(registroCita);
+                call.enqueue(new RegistrarCitaCallback());
+
+
+
+
                 Intent intent = new Intent(SeleccionarFechaHora.this, CitasActivity.class);
                 startActivity(intent);
             }
@@ -133,5 +156,44 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    class RegistrarCitaCallback implements Callback<CitaResponse> {
+
+
+        @Override
+        public void onResponse(Call<CitaResponse> call, Response<CitaResponse> response) {
+            if(response.isSuccessful()){
+                CitaResponse citaResponse = response.body();
+                if (citaResponse.getMensaje().getStatus()==200){
+                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),"1","Taller1","Calle las begonias","KIM689","Fecha","1","1"));
+                    //db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
+                    Toast.makeText(getApplicationContext(),"Se registró correctamente la cita", Toast.LENGTH_LONG).show();
+
+                    Intent registrarCita = new Intent(SeleccionarFechaHora.this, CitasActivity.class);
+                    startActivity(registrarCita);
+                }else{
+                    Log.i("Retrofit", "post submitted to API." + response.body().toString());
+                    Toast.makeText(getApplicationContext(),citaResponse.getMensaje().getStatus().toString(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }else{
+                try {
+                    //Toast.makeText(getApplicationContext(),response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    Log.d("getTasksListHTTP", "Se añadio bien:"+response.errorBody().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+
+        @Override
+        public void onFailure(Call<CitaResponse> call, Throwable t) {
+            Toast.makeText(getApplicationContext(),"Error en la estructura", Toast.LENGTH_SHORT).show();
+        }
     }
 }
