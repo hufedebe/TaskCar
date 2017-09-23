@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class tTab1fragment extends Fragment {
 
     private static final String TAG = "TAB1Fragment";
-    final ArrayList<tallerEntity> tallerLists = new ArrayList<tallerEntity>();
+    final ArrayList<Taller> tallerLists = new ArrayList<Taller>();
      ListView listView;
     @Nullable
     @Override
@@ -62,7 +63,7 @@ public class tTab1fragment extends Fragment {
     private void poblarListaTalleres(ArrayList<Taller> talleres){
         tallerLists.clear();
         for (Taller r: talleres){
-            tallerLists.add(new tallerEntity(r.getAperturaNocturno(),r.getLatitud(),r.getCierreNocturno(),
+            tallerLists.add(new Taller(r.getAperturaNocturno(),r.getLatitud(),r.getCierreNocturno(),
                                             r.getTelefonoTaller(),r.getAperturaExpress(),r.getAtencionesExpress(),
                                             r.getAperturaDiurno(),r.getAtencionesNocturno(),r.getCierreExpress(),
                                             r.getNombreTaller(),r.getLongitud(),r.getAtencionesDiurno(), r.getDireccionTaller(),
@@ -70,20 +71,25 @@ public class tTab1fragment extends Fragment {
 
         }
         final TallerList_Adapter adapterTaller = new TallerList_Adapter(getView().getContext(), tallerLists);
-
+        Log.d("getTasksListHTTP", "Taller" + tallerLists.toString());
         listView = (ListView) getView().findViewById(R.id.list);
         listView.setAdapter(adapterTaller);
-
+/*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                // Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
                 final Taller currentTaller = (Taller) adapterTaller.getItem(position);
                 Intent taller = new Intent(getActivity(), SeleccionarFechaHora.class);
-                taller.putExtra("apertura",currentTaller.getAperturaDiurno());
+               // taller.putExtra("apertura",currentTaller.getAperturaDiurno());
+                //taller.putExtra("idTaller",currentTaller.getIdTaller().toString());
+                //taller.putExtra("nombreTaller",currentTaller.getNombreTaller());
+                //taller.putExtra("direccionTaller",currentTaller.getDireccionTaller());
+
+                Log.d("getTasksListHTTP", "Taller" + currentTaller.getNombreTaller());
                 getActivity().startActivity(taller);
             }
         });
-
+*/
     }
 
 

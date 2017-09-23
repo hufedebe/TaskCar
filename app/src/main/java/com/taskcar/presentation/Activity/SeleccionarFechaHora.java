@@ -41,6 +41,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
     String init, finit, minit,mfin;
     String aperturamin, cierremin;
     final DatabaseHelper db = new DatabaseHelper(this);
+    String idTaller, nombreTaller, direccionTaller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +50,16 @@ public class SeleccionarFechaHora extends AppCompatActivity {
 
         Intent getResults = getIntent();
         String apertura = getResults.getStringExtra("apertura");
-
         String cierre = getResults.getStringExtra("cierre");
         String atenciones = getResults.getStringExtra("atenciones");
+        idTaller= getResults.getStringExtra("idTaller");
+        nombreTaller = getResults.getStringExtra("nombreTaller");
+         direccionTaller = getResults.getStringExtra("direccionTaller");
+
+
         //String horario = getResults.getStringExtra("horario");
 
-
+        Log.d("getTasksListHTTP", "Taller" + nombreTaller);
         init=apertura.substring(0,2);
         minit=apertura.substring(3,5);
 
@@ -134,7 +139,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                     finishAffinity();
                 }
 
-                CitaPost registroCita = new CitaPost("KIM789","07/09/2017 05:45 AM","1","1","E");
+                CitaPost registroCita = new CitaPost(SeleccionarServicio.placa,"07/09/2017 05:45 AM","1","1","E");
                 //CitaPost registroCita = new CitaPost("KIM789");
                 Call<CitaResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarCita(registroCita);
                 call.enqueue(new RegistrarCitaCallback());
@@ -167,7 +172,8 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             if(response.isSuccessful()){
                 CitaResponse citaResponse = response.body();
                 if (citaResponse.getMensaje().getStatus()==200){
-                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),"1","Taller1","Calle las begonias","KIM689","Fecha","1","1"));
+                    Log.d("getTasksListHTTP", "Taller" + nombreTaller);
+                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),idTaller,nombreTaller,direccionTaller,SeleccionarServicio.placa,"07/09/2017 05:45 AM","1","1"));
                     //db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
                     Toast.makeText(getApplicationContext(),"Se registró correctamente la cita", Toast.LENGTH_LONG).show();
 

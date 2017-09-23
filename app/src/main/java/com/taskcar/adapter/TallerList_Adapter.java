@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class TallerList_Adapter extends ArrayAdapter {
     private Context context ;
-    public TallerList_Adapter(Context context, ArrayList<tallerEntity> tallerEntity) {
+    public TallerList_Adapter(Context context, ArrayList<Taller> tallerEntity) {
         super(context, 0, tallerEntity);
     }
 
@@ -41,7 +42,7 @@ public class TallerList_Adapter extends ArrayAdapter {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item_taller, parent, false);
         }
-        final tallerEntity currentTaller = (tallerEntity) getItem(position);
+        final Taller currentTaller = (Taller) getItem(position);
 
         TextView nombreTaller = (TextView) listItemView.findViewById(R.id.txt_nombreTaller);
         TextView direccionTaller = (TextView) listItemView.findViewById(R.id.txt_direccion);
@@ -60,7 +61,11 @@ public class TallerList_Adapter extends ArrayAdapter {
                 reparacion.putExtra("apertura",currentTaller.getAperturaDiurno());
                 reparacion.putExtra("cierre", currentTaller.getCierreDiurno());
                 reparacion.putExtra("atenciones", currentTaller.getAtencionesDiurno().toString());
+                reparacion.putExtra("idTaller",currentTaller.getIdTaller().toString());
+                reparacion.putExtra("nombreTaller",currentTaller.getNombreTaller());
+                reparacion.putExtra("direccionTaller",currentTaller.getDireccionTaller());
                 getApplicationContext().startActivity(reparacion);
+                Log.d("getTasksListHTTP", "Taller" + currentTaller.getNombreTaller());
                 //Intent intent=new Intent(context, SeleccionarFechaHora.class);
                 //context.startActivity(intent);
             }

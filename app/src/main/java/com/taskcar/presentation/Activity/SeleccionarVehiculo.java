@@ -26,7 +26,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
 
     private ArrayList<Car> carLists = new ArrayList<Car>();
     final DatabaseHelper db = new DatabaseHelper(this);
-
+    public String placa_Cita;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +50,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
 
 
 
-        CarList_Adapter adapterCar = new CarList_Adapter(this, carLists);
+        final CarList_Adapter adapterCar = new CarList_Adapter(this, carLists);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapterCar);
@@ -77,17 +77,19 @@ public class SeleccionarVehiculo extends AppCompatActivity {
             }
         });
 */
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,int c, long id) {
                 // When clicked, show a toast with the TextView text
                 //Toast.makeText(SeleccionarVehiculo.this, "" + position, Toast.LENGTH_SHORT).show();
 
+
+                //String data = carLists.get(position).getHorario();
 
                     Intent seleccionarServicio = new Intent(SeleccionarVehiculo.this, SeleccionarServicio.class);
                     startActivity(seleccionarServicio);
 
             }
-        });
+        });*/
 
     }
 

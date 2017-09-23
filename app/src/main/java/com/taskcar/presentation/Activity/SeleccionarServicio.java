@@ -1,5 +1,6 @@
 package com.taskcar.presentation.Activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.taskcar.presentation.Fragment.sTab2Fragment;
 
 public class SeleccionarServicio extends AppCompatActivity {
 
+    public static String placa;
     private static final String TAG = "SeleccionarActivity";
 
     private SelectionsPageAdapter mSectionsPageAdapter;
@@ -25,6 +27,10 @@ public class SeleccionarServicio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent getResults = getIntent();
+        placa= getResults.getStringExtra("placa");
+
         setContentView(R.layout.activity_seleccionar_servicio);
 
         Log.d(TAG,"onCreate:Starting.");

@@ -24,29 +24,30 @@ public class Cita {
     public Cita(int id, String idEvento, String idTaller,String nombreTaller,String direccionTaller, String placa,
                 String diaHoraEvento, String idServicio, String tipoServicio){
 
-        this.id= id;
-        this.idEvento = idEvento;
-        this.idTaller = idTaller;
+        this.setId(id);
+        this.setIdEvento(idEvento);
+        this.setIdTaller(idTaller);
         this.setNombreTaller(nombreTaller);
-        this.direccionTaller = direccionTaller;
-        this.placa = placa;
-        this.diaHoraEvento = diaHoraEvento;
-        this.idServicio = idServicio;
-        this.tipoServicio = tipoServicio;
+        this.setDireccionTaller(direccionTaller);
+        this.setPlaca(placa);
+        this.setDiaHoraEvento(diaHoraEvento);
+        this.setIdServicio(idServicio);
+        this.setTipoServicio(tipoServicio);
     }
     public Cita( String idEvento, String idTaller,String nombreTaller,String direccionTaller, String placa,
                 String diaHoraEvento, String idServicio, String tipoServicio){
 
 
-        this.idEvento = idEvento;
-        this.idTaller = idTaller;
+        this.setIdEvento(idEvento);
+        this.setIdTaller(idTaller);
         this.setNombreTaller(nombreTaller);
-        this.direccionTaller = direccionTaller;
-        this.placa = placa;
-        this.diaHoraEvento = diaHoraEvento;
-        this.idServicio = idServicio;
-        this.tipoServicio = tipoServicio;
+        this.setDireccionTaller(direccionTaller);
+        this.setPlaca(placa);
+        this.setDiaHoraEvento(diaHoraEvento);
+        this.setIdServicio(idServicio);
+        this.setTipoServicio(tipoServicio);
     }
+
     public int getId() {
         return id;
     }
@@ -69,6 +70,14 @@ public class Cita {
 
     public void setIdTaller(String idTaller) {
         this.idTaller = idTaller;
+    }
+
+    public String getNombreTaller() {
+        return nombreTaller;
+    }
+
+    public void setNombreTaller(String nombreTaller) {
+        this.nombreTaller = nombreTaller;
     }
 
     public String getDireccionTaller() {
@@ -109,13 +118,5 @@ public class Cita {
 
     public void setTipoServicio(String tipoServicio) {
         this.tipoServicio = tipoServicio;
-    }
-
-    public String getNombreTaller() {
-        return nombreTaller;
-    }
-
-    public void setNombreTaller(String nombreTaller) {
-        this.nombreTaller = nombreTaller;
     }
 }

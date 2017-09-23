@@ -1,6 +1,7 @@
 package com.taskcar.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,10 @@ public class CitaList_Adapter extends ArrayAdapter {
         TextView direccionTaller = (TextView) listItemView.findViewById(R.id.direccion_text_view);
         TextView horario = (TextView) listItemView.findViewById(R.id.horario_text_view);
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
-
+        Log.d("getTasksListHTTP", "Taller" + currentCita.getNombreTaller());
 
         nombreTaller.setText(currentCita.getNombreTaller());
+
         direccionTaller.setText(currentCita.getDireccionTaller());
         horario.setText(currentCita.getDiaHoraEvento());
         placa.setText(currentCita.getPlaca());

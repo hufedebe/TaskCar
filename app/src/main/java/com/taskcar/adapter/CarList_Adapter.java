@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.taskcar.R;
@@ -16,9 +17,12 @@ import com.taskcar.data.entity.CarEntity;
 import com.taskcar.data.entity.CitaEntity;
 import com.taskcar.db.helper.DatabaseHelper;
 import com.taskcar.db.model.Car;
+import com.taskcar.presentation.Activity.SeleccionarServicio;
 import com.taskcar.presentation.Activity.SeleccionarVehiculo;
 
 import java.util.ArrayList;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Hudeya on 1/08/2017.
@@ -27,6 +31,7 @@ import java.util.ArrayList;
 public class CarList_Adapter extends ArrayAdapter {
     private DatabaseHelper dbHelper;
     private Context context ;
+    public int selectedPosition= 0;
    // final DatabaseHelper db = new DatabaseHelper(this);
     private int amImageResourceId;
     public CarList_Adapter (Context context, ArrayList<Car> carEntity ){
@@ -61,6 +66,22 @@ public class CarList_Adapter extends ArrayAdapter {
         placa.setText(currentCar.getPlaca());
         marca.setText(currentCar.getMarca());
         modelo.setText(currentCar.getModelo());
+
+        LinearLayout vehiculo = (LinearLayout) listItemView.findViewById(R.id.vehiculo_1);
+        vehiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
+                Intent sVehiculo = new Intent(getApplicationContext(), SeleccionarServicio.class);
+
+                sVehiculo.putExtra("placa",currentCar.getPlaca());
+                getApplicationContext().startActivity(sVehiculo);
+                //Intent intent=new Intent(context, SeleccionarFechaHora.class);
+                //context.startActivity(intent);
+            }
+        });
+
+
 
 
         ImageView iconView = (ImageView)listItemView.findViewById(R.id.image);

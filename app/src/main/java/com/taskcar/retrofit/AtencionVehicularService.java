@@ -25,7 +25,7 @@ public interface AtencionVehicularService {
     @POST("registrarCita")
     Call<CitaResponse> postRegistrarCita(  @Body CitaPost citaPost);
 
-   @POST("registrarVehiculos")
+   @POST("registrarVehiculo")
    Call<VehiculoResponse> postRegistrarVehiculo( @Body VehiculoPost vehiculoPost);
 
 

@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:minHeight="@dimen/list_item_height"
     android:background="@color/colorPrimaryDark"
-    android:descendantFocusability="blocksDescendants" >
+    android:descendantFocusability="blocksDescendants"
+    android:id="@+id/vehiculo_1">
 
     <ImageView
         android:id="@+id/image"
