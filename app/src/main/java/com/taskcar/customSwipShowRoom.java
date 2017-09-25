@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.taskcar.presentation.Activity.MainActivity;
 import com.taskcar.presentation.Activity.Observaciones;
@@ -22,10 +23,9 @@ import com.taskcar.presentation.Activity.TestDrive;
 public class customSwipShowRoom extends PagerAdapter {
 
 
-    private int[] imageResources ={R.drawable.carshowroom1,R.drawable.carshowroom2,R.drawable.carshowroom3,
-            R.drawable.carshowroom4};
-    private String[] stringResources = {"Suzuki Alto 8000","Suzuki APV Furgon","Suzuki CIAZ","Suzuki Jimny"};
-    private String[] stringResources2 ={"Desde $6,590/ S/549","Desde $6,590/ S/549","Desde $6,590/ S/549","Desde $6,590/ S/549"};
+    private int[] imageResources ={R.drawable.changan_benni,R.drawable.changan_cs15,R.drawable.changan_grandvan};
+    private String[] stringResources = {"Benni","CS15","Grand VAN Turismo"};
+    private String[] stringResources2 ={"Desde $6,490/ S/21,222","Desde $11,290/ S/36,580","Desde $13,790/ S/44,680"};
     private Context ctx;
     private LayoutInflater layoutInflater;
 
@@ -45,19 +45,31 @@ public class customSwipShowRoom extends PagerAdapter {
         View itemView=layoutInflater.inflate(R.layout.activity_custom_swip_showroom,container,false);
 
         ImageView imageView=(ImageView) itemView.findViewById(R.id.swip_image_view);
-        TextView textView=(TextView) itemView.findViewById(R.id.text_showRoom);
+        final TextView textView=(TextView) itemView.findViewById(R.id.text_showRoom);
         TextView textView1 = (TextView) itemView.findViewById(R.id.text2_showRoom);
 
         ImageView test_drive_image = (ImageView) itemView.findViewById(R.id.image_test_drive);
         TextView test_drive_text = (TextView) itemView.findViewById(R.id.test_drive_text);
 
+        imageView.setImageResource(imageResources[position]);
+        textView.setText(stringResources[position]);
+        textView1.setText(stringResources2[position]);
+        container.addView(itemView);
+
 
         test_drive_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent solicitar = new Intent(v.getContext(), TestDrive.class);
-
-                v.getContext().startActivity(solicitar);
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"hufedebe@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Solicitud de Test Drive "+textView.getText().toString());
+                i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+                try {
+                    ctx.startActivity(Intent.createChooser(i, "Enviando Email..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(ctx.getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -70,11 +82,6 @@ public class customSwipShowRoom extends PagerAdapter {
             }
         });
 
-
-        imageView.setImageResource(imageResources[position]);
-        textView.setText(stringResources[position]);
-        textView1.setText(stringResources2[position]);
-        container.addView(itemView);
 
 
 

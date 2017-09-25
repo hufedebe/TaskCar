@@ -1,6 +1,8 @@
 package com.taskcar.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +61,20 @@ public class CitaList_Adapter extends ArrayAdapter {
         horario.setText(currentCita.getDiaHoraEvento());
         placa.setText(currentCita.getPlaca());
 
+     ///Reprograr y Contactar
+        TextView contactar = (TextView) listItemView.findViewById(R.id.txt_contactar);
 
+        contactar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String posted_by = "939274225";
+
+                String uri = "tel:" + posted_by.trim() ;
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse(uri));
+                getContext().startActivity(intent);
+            }
+        });
 
        // View textContainer = listItemView.findViewById(R.id.text_container);
         //int color = ContextCompat.getColor(getContext(),amImageResourceId);
