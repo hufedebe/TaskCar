@@ -76,9 +76,16 @@ public class customSwipShowRoom extends PagerAdapter {
         test_drive_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent solicitar1 = new Intent(v.getContext(), TestDrive.class);
-
-                v.getContext().startActivity(solicitar1);
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"hufedebe@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Solicitud de Test Drive "+textView.getText().toString());
+                i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+                try {
+                    ctx.startActivity(Intent.createChooser(i, "Enviando Email..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(ctx.getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
