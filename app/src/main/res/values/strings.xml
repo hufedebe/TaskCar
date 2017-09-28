@@ -57,5 +57,5 @@
         <item>Suzuki</item>
     </string-array>
 
-
+    <string name="hint">Editor #%d</string>
 </resources>
