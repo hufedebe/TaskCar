@@ -16,8 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.taskcar.R;
-import com.taskcar.ShowroomActivity;
-import com.taskcar.TallerActivity;
+import com.taskcar.presentation.Showroom.ShowroomActivity;
 import com.taskcar.adapter.MenuList_Adapter;
 import com.taskcar.customSwip;
 import com.taskcar.data.entity.MenuList;

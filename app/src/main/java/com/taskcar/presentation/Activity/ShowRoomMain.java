@@ -5,14 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.taskcar.R;
-import com.taskcar.ShowroomActivity;
+import com.taskcar.presentation.Showroom.ShowroomActivity;
 
 public class ShowRoomMain extends AppCompatActivity {
-
+    public static String modelo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +32,16 @@ public class ShowRoomMain extends AppCompatActivity {
         btn_changan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="changan";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
+                //showRoomActivity.putExtra("modelo","changan");
                 startActivity(showRoomActivity);
             }
         });
         btn_citroen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="citroen";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
                 startActivity(showRoomActivity);
             }
@@ -47,6 +49,7 @@ public class ShowRoomMain extends AppCompatActivity {
         btn_ds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="ds";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
                 startActivity(showRoomActivity);
             }
@@ -54,6 +57,7 @@ public class ShowRoomMain extends AppCompatActivity {
         btn_fonton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="foton";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
                 startActivity(showRoomActivity);
             }
@@ -61,6 +65,7 @@ public class ShowRoomMain extends AppCompatActivity {
         btn_great.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="Great Wall";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
                 startActivity(showRoomActivity);
             }
@@ -68,6 +73,7 @@ public class ShowRoomMain extends AppCompatActivity {
         btn_hawall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="Haval";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
                 startActivity(showRoomActivity);
             }
@@ -75,6 +81,7 @@ public class ShowRoomMain extends AppCompatActivity {
         btn_jac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                modelo="Jac";
                 Intent showRoomActivity = new Intent(ShowRoomMain.this, ShowroomActivity.class);
                 startActivity(showRoomActivity);
             }

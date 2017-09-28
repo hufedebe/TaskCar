@@ -23,7 +23,7 @@
             android:name=".presentation.Activity.RegisterActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
         <activity android:name=".presentation.Activity.CitasActivity" />
-        <activity android:name=".ShowroomActivity" />
+        <activity android:name=".presentation.Showroom.ShowroomActivity" />
         <activity android:name=".TallerActivity" />
 
         <meta-data
