@@ -17,14 +17,29 @@
         android:background="@drawable/cutomborder"
         android:descendantFocusability="blocksDescendants"
         >
-
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/txt_nombreTaller"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Javier Prado"
             android:textSize="25dp"
             android:textColor="@color/colorPrimary"/>
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                style="?android:attr/ratingBarStyleSmall"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:isIndicator="true" />
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/txt_tipoServicio"
             android:layout_width="match_parent"

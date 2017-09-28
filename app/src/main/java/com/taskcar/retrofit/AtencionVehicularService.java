@@ -1,8 +1,10 @@
 package com.taskcar.retrofit;
 
 import com.taskcar.model.CitaPost;
+import com.taskcar.model.RegistroPost;
 import com.taskcar.model.VehiculoPost;
 import com.taskcar.retrofit.Response.CitaResponse;
+import com.taskcar.retrofit.Response.RegistroResponse;
 import com.taskcar.retrofit.Response.TalleresResponse;
 import com.taskcar.retrofit.Response.VehiculoResponse;
 
@@ -27,6 +29,9 @@ public interface AtencionVehicularService {
 
    @POST("registrarVehiculo")
    Call<VehiculoResponse> postRegistrarVehiculo( @Body VehiculoPost vehiculoPost);
+
+    @POST("registrarPersona")
+    Call<RegistroResponse> postRegistrarPersona(@Body RegistroPost registroPost);
 
 
 

@@ -52,18 +52,23 @@ public class customSwipShowRoom extends PagerAdapter {
             stringResources= new String[]{"C-Elysee", "New C3", "Berlingo", "New C4"};
             stringResources2 = new String[]{"Desde $12,693/ S/41,116","Desde $17,990/ S/58,288","Desde $15,990/ S/51,808","Desde $16,990/ S/55,048"};
         }else if(marca.equals("ds")){
+            imageResources= new int[]{R.drawable.ds_3,R.drawable.ds_4,R.drawable.ds_5};
             stringResources= new String[]{"DS 3", "DS 4", "DS 5"};
             stringResources2 = new String[]{"Desde $23,990/ S/77,728","Desde $27,490/ S/89,068","Desde $42,990/ S/139,2888"};
         }else if(marca.equals("foton")){
+            imageResources= new int[]{R.drawable.foton_sauvana,R.drawable.foton_k1};
             stringResources= new String[]{"Sauvana", "K1"};
             stringResources2 = new String[]{"Desde $20,490/ S/66,388","Desde $26,290/ S/85,180"};
         }else if(marca.equals("Great Wall")){
+            imageResources= new int[]{R.drawable.greatwall_m4,R.drawable.greatwall_m3,R.drawable.greatwall_wingle};
             stringResources= new String[]{"M4", "M3", "Wingle 5"};
             stringResources2 = new String[]{"Desde $10,290/ S/33,340","Desde $13,990/ S/45,328","Desde $15,990/ S/51,808"};
         }else if(marca.equals("Haval")){
+            //imageResources= new int[]{R.drawable.haval_h1,R.drawable.haval_h2,R.drawable.haval_h6};
             stringResources= new String[]{"H1", "H2","H6"};
             stringResources2 = new String[]{"Desde $12,690/ S/41,116","Desde $16,490/ S/53,428","Desde $17,490/ S/56,668"};
         }else if(marca.equals("Jac")){
+            //imageResources= new int[]{R.drawable.jac_j4,R.drawable.jac_nueva_refine,R.drawable.jac_s2};
             stringResources= new String[]{"J4", "Nueva Refine", "S2"};
             stringResources2 = new String[]{"Desde $9,790/ S/31,720","Desde $17,290/ S/56,020","Desde $10,990/ S/35,608"};
         }
@@ -86,7 +91,7 @@ public class customSwipShowRoom extends PagerAdapter {
         ImageView test_drive_image = (ImageView) itemView.findViewById(R.id.image_test_drive);
         TextView test_drive_text = (TextView) itemView.findViewById(R.id.test_drive_text);
 
-        Toast.makeText(getApplicationContext(),ShowRoomMain.modelo, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(getApplicationContext(),ShowRoomMain.modelo, Toast.LENGTH_LONG).show();
 
 
         imageView.setImageResource(imageResources[position]);
@@ -126,10 +131,6 @@ public class customSwipShowRoom extends PagerAdapter {
                 }
             }
         });
-
-
-
-
 
 
         return itemView;

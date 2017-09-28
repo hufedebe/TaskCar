@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +48,11 @@ public class TallerList_Adapter extends ArrayAdapter {
         TextView nombreTaller = (TextView) listItemView.findViewById(R.id.txt_nombreTaller);
         TextView direccionTaller = (TextView) listItemView.findViewById(R.id.txt_direccion);
         TextView tipoServicio = (TextView) listItemView.findViewById(R.id.txt_tipoServicio);
+        RatingBar mRatingBar = (RatingBar) listItemView.findViewById(R.id.rating);
 
         nombreTaller.setText(currentTaller.getNombreTaller());
         direccionTaller.setText(currentTaller.getDireccionTaller());
+        mRatingBar.setRating(4);
 
         LinearLayout taller = (LinearLayout) listItemView.findViewById(R.id.taller_1);
         taller.setOnClickListener(new View.OnClickListener() {
