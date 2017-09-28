@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.taskcar.R;
 import com.taskcar.VehiculosActivity;
@@ -21,6 +22,9 @@ public class RegisterSubActivity extends AppCompatActivity {
         Button btn_cita = (Button) findViewById(R.id.btn_cita);
         Button btn_taller = (Button) findViewById(R.id.btn_taller);
         ImageView btn_inicio = (ImageView) findViewById(R.id.btn_inicio);
+        TextView texto_bienvenida = (TextView) findViewById(R.id.txt_name);
+
+        texto_bienvenida.setText("Bienvenido "+RegisterMainActivity.nombreUsuario+" !!");
 
         btn_vehiculo.setOnClickListener(new View.OnClickListener() {
             @Override

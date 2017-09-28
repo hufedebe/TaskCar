@@ -67,7 +67,7 @@ public class CitaList_Adapter extends ArrayAdapter {
         contactar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String posted_by = "939274225";
+                String posted_by = "994300027";
 
                 String uri = "tel:" + posted_by.trim() ;
                 Intent intent = new Intent(Intent.ACTION_DIAL);

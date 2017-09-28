@@ -27,8 +27,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aros de Aleación: "
+            android:text="Aros de Aleación:  "
             android:textSize="15dp"/>
+        <TextView
+            android:id="@+id/txt_aros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"/>
+
 
     </LinearLayout>
     <LinearLayout
@@ -40,6 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Motor: "
+            android:textSize="15dp"/>
+        <TextView
+            android:id="@+id/txt_motor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info "
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="15dp"/>
 
     </LinearLayout>
@@ -54,6 +69,14 @@
             android:text="Seguridad: "
             android:textSize="15dp"/>
 
+        <TextView
+            android:id="@+id/txt_seguridad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,6 +87,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transmisión: "
+            android:textSize="15dp"/>
+        <TextView
+            android:id="@+id/txt_transmision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info "
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="15dp"/>
 
     </LinearLayout>

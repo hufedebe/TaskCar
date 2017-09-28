@@ -33,6 +33,7 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
     String codigoMarca;
     String codigoModelo;
     Button registrarVehiculo;
+    String usuario;
     Spinner spineerVehiculo, spinnerModeloVehiculo;
     ArrayAdapter<String> changanAdapter;
     ArrayAdapter<String> citroenAdapter;
@@ -106,13 +107,23 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
         suzukiAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, suzuki);
         suzukiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        Log.i("Retrofit", "Usuario"+RegisterMainActivity.dniUsuario);
+        Log.i("Retrofit", "Usuario"+RegisterActivity.dniUsuario);
+
 
         //final String textMarca = spinnerVehiculo.getSelectedItem().toString();
        // TextView textView = (TextView)spinnerVehiculo.getSelectedView();
         //final String textMarca = textView.getText().toString();
+        if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
+            usuario = RegisterMainActivity.dniUsuario;
+        }else if(RegisterActivity.dniUsuario!=null && !RegisterActivity.dniUsuario.isEmpty()){
+            usuario = RegisterActivity.dniUsuario;
+        }else{
+            usuario = "12345678";
+        }
 
 
-        //marcaVehiculo = (EditText) findViewById(R.id.marca_vehiculo);
+            //marcaVehiculo = (EditText) findViewById(R.id.marca_vehiculo);
         //modeloVehiculo = (EditText) findViewById(R.id.modelo_vehiculo);
         placaVehiculo= (EditText) findViewById(R.id.placa_vehiculo);
 
@@ -127,7 +138,7 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
                 textModelo = spinnerModeloVehiculo.getSelectedItem().toString();
                 setCodigoModelo();
                 if(placaVehiculo.getText().toString().length()==6){
-                    VehiculoPost registroVehiculo = new VehiculoPost(placaVehiculo.getText().toString(),"12345678",codigoMarca,codigoModelo,"1996");
+                    VehiculoPost registroVehiculo = new VehiculoPost(placaVehiculo.getText().toString(),usuario,codigoMarca,codigoModelo,"1996");
                     Call<VehiculoResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarVehiculo(registroVehiculo);
                     call.enqueue(new RegistrarVehiculoCallback());
                 }else{

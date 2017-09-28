@@ -47,6 +47,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
     String init, finit, minit,mfin;
     String aperturamin, cierremin;
     String dia, mes, ano;
+    String horarioCita;
     final DatabaseHelper db = new DatabaseHelper(this);
     String idTaller, nombreTaller, direccionTaller;
 
@@ -163,7 +164,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             public void onClick(View v) {
 
                 Integer positiond=adapterHorario.selectedPosition;
-                String horarioCita;
+
                 String data = horarioList.get(positiond).getHorario();
                 String hora = data;
                 data = data.substring(0,5);
@@ -224,7 +225,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                 CitaResponse citaResponse = response.body();
                 if (citaResponse.getMensaje().getStatus()==200){
                     Log.d("getTasksListHTTP", "Taller" + nombreTaller);
-                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),idTaller,nombreTaller,direccionTaller,SeleccionarServicio.placa,"07/09/2017 05:45 AM","1","1"));
+                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),idTaller,nombreTaller,direccionTaller,SeleccionarServicio.placa,horarioCita,"1","1"));
                     //db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
                     Toast.makeText(getApplicationContext(),"Se registró correctamente la cita", Toast.LENGTH_LONG).show();
 

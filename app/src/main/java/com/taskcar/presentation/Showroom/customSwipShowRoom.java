@@ -19,6 +19,8 @@ import com.taskcar.presentation.Activity.RegisterActivity;
 import com.taskcar.presentation.Activity.ShowRoomMain;
 import com.taskcar.presentation.Activity.TestDrive;
 
+import org.w3c.dom.Text;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -31,6 +33,10 @@ public class customSwipShowRoom extends PagerAdapter {
     private int[] imageResources={R.drawable.changan_benni,R.drawable.changan_cs15,R.drawable.changan_grandvan};
     private String[] stringResources={"Benni","CS15","Grand VAN Turismo"} ;
     private String[] stringResources2= {"Desde $6,490/ S/21,222","Desde $11,290/ S/36,580","Desde $13,790/ S/44,680"};
+    private String [] stringaros={"Aros de aleación 13","Aros de aleación de 16 pulgadas","Aros de acero de 15 pulgadas"};
+    private String [] stringmotor ={"Mecanico", "Mecanico", "Mecanico"};
+    private String[] stringseguridad={"Seguros para niños en puertas posteriores","Seguros para niños en puertas posteriores","Seguros para niños en puertas posteriores"};
+    private String[] stringtransmision={"Transmisión Mecánica","Transmisión Mecánica","Transmisión Mecánica"};
     private Context ctx;
     private LayoutInflater layoutInflater;
     private String marca;
@@ -91,6 +97,11 @@ public class customSwipShowRoom extends PagerAdapter {
         ImageView test_drive_image = (ImageView) itemView.findViewById(R.id.image_test_drive);
         TextView test_drive_text = (TextView) itemView.findViewById(R.id.test_drive_text);
 
+        TextView aros = (TextView) itemView.findViewById(R.id.txt_aros);
+        TextView motor = (TextView) itemView.findViewById(R.id.txt_motor);
+        TextView seguridad = (TextView) itemView.findViewById(R.id.txt_seguridad);
+        TextView transmision = (TextView) itemView.findViewById(R.id.txt_transmision);
+
      //   Toast.makeText(getApplicationContext(),ShowRoomMain.modelo, Toast.LENGTH_LONG).show();
 
 
@@ -98,16 +109,19 @@ public class customSwipShowRoom extends PagerAdapter {
         textView.setText(stringResources[position]);
         textView1.setText(stringResources2[position]);
         container.addView(itemView);
-
+        aros.setText(stringaros[position]);
+        motor.setText(stringmotor[position]);
+        seguridad.setText(stringseguridad[position]);
+        transmision.setText(stringtransmision[position]);
 
         test_drive_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"hufedebe@gmail.com"});
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"ronald.uch@gmail.com"});
                 i.putExtra(Intent.EXTRA_SUBJECT, "Solicitud de Test Drive "+textView.getText().toString());
-                i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+                i.putExtra(Intent.EXTRA_TEXT   , "Solicito un Test Drive del modelo"+ textView.getText().toString());
                 try {
                     ctx.startActivity(Intent.createChooser(i, "Enviando Email..."));
                 } catch (android.content.ActivityNotFoundException ex) {

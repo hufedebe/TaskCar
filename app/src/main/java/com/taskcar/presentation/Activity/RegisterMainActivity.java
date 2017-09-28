@@ -24,6 +24,8 @@ import retrofit2.Response;
 
 public class RegisterMainActivity extends AppCompatActivity {
 
+    public static String dniUsuario;
+    public static String nombreUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,8 @@ public class RegisterMainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dniUsuario=dni.getText().toString();
+                nombreUsuario=nombre.getText().toString();
                 RegistroPost registroPost = new RegistroPost(nombre.getText().toString(),apellidoPaterno.getText().toString(),apellidoMaterno.getText().toString(),
                                                             dni.getText().toString(),telefono.getText().toString(),direccion.getText().toString(),email.getText().toString(),
                                                             contrasena.getText().toString());
@@ -70,12 +73,16 @@ public class RegisterMainActivity extends AppCompatActivity {
                     startActivity(register);
 
                 }else{
+                    dniUsuario="";
+                    nombreUsuario="";
                    // Log.i("Retrofit", "post submitted to API." + response.body().toString());
                     Toast.makeText(getApplicationContext(),"Registro Erroneo", Toast.LENGTH_SHORT).show();
                 }
 
 
             }else{
+                dniUsuario="";
+                nombreUsuario="";
                 Toast.makeText(getApplicationContext(),"Problemas Conexion", Toast.LENGTH_SHORT).show();
 
 

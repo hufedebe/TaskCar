@@ -31,6 +31,8 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements SensorEventListener {
 
+
+    public static String dniUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(View v) {
 
-
+                    dniUsuario = usuario.getText().toString();
                     LoginPost loginPersona = new LoginPost(usuario.getText().toString(),password.getText().toString());
                     Call<LoginResponse> call = AtencionVehicularAdapter.getApiService().postLoginPersona(loginPersona);
                     call.enqueue(new LoginPersonaCallback());
@@ -82,12 +84,13 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
                     startActivity(loguearse);
 
                 }else{
-
+                    dniUsuario="";
                     Toast.makeText(getApplicationContext(),"Verifique los datos Ingresados", Toast.LENGTH_SHORT).show();
                 }
 
 
             }else{
+                dniUsuario="";
                 Toast.makeText(getApplicationContext(),"Problemas Conexion", Toast.LENGTH_SHORT).show();
 
 
