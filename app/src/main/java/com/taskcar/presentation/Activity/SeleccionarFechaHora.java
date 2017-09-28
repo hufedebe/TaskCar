@@ -2,6 +2,7 @@ package com.taskcar.presentation.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.taskcar.R;
@@ -23,12 +26,15 @@ import com.taskcar.db.model.Car;
 import com.taskcar.db.model.Cita;
 import com.taskcar.model.CitaPost;
 import com.taskcar.model.VehiculoPost;
+import com.taskcar.presentation.Fragment.sTab1Fragment;
 import com.taskcar.retrofit.AtencionVehicularAdapter;
 import com.taskcar.retrofit.Response.CitaResponse;
 import com.taskcar.retrofit.Response.VehiculoResponse;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,6 +46,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
     private Button btn_generarCita;
     String init, finit, minit,mfin;
     String aperturamin, cierremin;
+    String dia, mes, ano;
     final DatabaseHelper db = new DatabaseHelper(this);
     String idTaller, nombreTaller, direccionTaller;
 
@@ -119,7 +126,34 @@ public class SeleccionarFechaHora extends AppCompatActivity {
 
         listView.setAdapter(adapterHorario);
 
+       CalendarView calendarView = (CalendarView) findViewById(R.id.calendar);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        final String curDate = sdf.format(calendarView.getDate());
 
+        calendarView.getDate();
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,
+                                            int dayOfMonth) {
+                //int d = dayOfMonth;
+                //curDate =String.valueOf(d);
+                ano = String.valueOf(year);
+                if (month>9){
+                    mes = String.valueOf(month);
+                }else{
+                    mes = "0"+ String.valueOf(month);
+                }
+
+                if (dayOfMonth>9){
+                    dia = String.valueOf(dayOfMonth);
+                }else{
+                    dia = "0"+ String.valueOf(dayOfMonth);
+                }
+
+
+            }
+        });
 
 
         btn_generarCita = (Button) findViewById(R.id.btn_generarCita);
@@ -129,9 +163,26 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             public void onClick(View v) {
 
                 Integer positiond=adapterHorario.selectedPosition;
-
+                String horarioCita;
                 String data = horarioList.get(positiond).getHorario();
+                String hora = data;
+                data = data.substring(0,5);
+                hora = hora.substring(0,2);
+                if (Integer.parseInt(hora)<=12){
+                    if(curDate !=null && !curDate.isEmpty()){
 
+                        horarioCita = curDate + " " + data + " AM";
+                    }else {
+                        horarioCita = dia + "/" + mes + "/" + ano + " " + data + " AM";
+                    }
+                }else{
+                    if(curDate !=null && !curDate.isEmpty()){
+
+                        horarioCita = curDate + " " + data + " PM";
+                    }else {
+                        horarioCita = dia + "/" + mes + "/" + ano + " " + data + " PM";
+                    }
+                }
                 //Toast.makeText(SeleccionarFechaHora.this,minit, Toast.LENGTH_SHORT).show();
 
                 btn_generarCita.setBackgroundColor(Color.parseColor("#B71C1C"));
@@ -139,7 +190,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                     finishAffinity();
                 }
 
-                CitaPost registroCita = new CitaPost(SeleccionarServicio.placa,"07/09/2017 05:45 AM","1","1","E");
+                CitaPost registroCita = new CitaPost(SeleccionarServicio.placa,horarioCita,"1","1", sTab1Fragment.tipoHorario);
                 //CitaPost registroCita = new CitaPost("KIM789");
                 Call<CitaResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarCita(registroCita);
                 call.enqueue(new RegistrarCitaCallback());

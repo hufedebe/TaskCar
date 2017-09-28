@@ -25,7 +25,7 @@ import static android.graphics.Color.RED;
 
 public class sTab1Fragment extends Fragment{
     private static final String TAG = "TAB1Fragment";
-
+    public static String tipoHorario;
     private TextView txtDiurno;
     private TextView txtNocturno;
     private TextView txtExpress;
@@ -55,7 +55,7 @@ public class sTab1Fragment extends Fragment{
                 //----------------------------------------------
                 txtExpress.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                 txtExpress.setTextColor(Color.parseColor("#E0E0E0"));
-
+                tipoHorario="D";
                 viewPager.setCurrentItem(1, true);
 
                 //Toast.makeText(getActivity(),"Testing Button CLick 1", Toast.LENGTH_SHORT).show();
@@ -77,7 +77,7 @@ public class sTab1Fragment extends Fragment{
                 txtExpress.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                 txtExpress.setTextColor(Color.parseColor("#E0E0E0"));
 
-
+                tipoHorario="N";
                 viewPager.setCurrentItem(1, true);
                 //Toast.makeText(getActivity(),"Testing Button CLick 1", Toast.LENGTH_SHORT).show();
             }
@@ -98,7 +98,7 @@ public class sTab1Fragment extends Fragment{
                 txtNocturno.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
                 txtNocturno.setTextColor(Color.parseColor("#E0E0E0"));
 
-
+                tipoHorario="E";
                 viewPager.setCurrentItem(1, true);
                 //Toast.makeText(getActivity(),"Testing Button CLick 1", Toast.LENGTH_SHORT).show();
             }
