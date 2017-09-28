@@ -35,7 +35,7 @@ public class AtencionVehicularAdapter {
         httpClient.addInterceptor(logging);  // <-- this is the important line!
 
 
-        String baseUrl = "http://10.0.2.2:8084/AtencionVehicular/";
+        String baseUrl = "http://10.0.2.2:9090/AtencionVehicular/";
         if (API_SERVICE==null){
 
             Retrofit retrofit = new Retrofit.Builder()

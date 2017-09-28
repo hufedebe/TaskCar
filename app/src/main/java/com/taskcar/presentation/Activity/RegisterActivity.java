@@ -31,6 +31,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements SensorEventListener {
 
+    public String usuarioDNI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
 
         final TextView usuario = (TextView) findViewById(R.id.input_usuario);
         final TextView password = (TextView) findViewById(R.id.input_password);
-
+        usuarioDNI = usuario.getText().toString();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,12 +83,13 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
                     startActivity(loguearse);
 
                 }else{
-
+                    usuarioDNI="";
                     Toast.makeText(getApplicationContext(),"Verifique los datos Ingresados", Toast.LENGTH_SHORT).show();
                 }
 
 
             }else{
+                usuarioDNI="";
                 Toast.makeText(getApplicationContext(),"Problemas Conexion", Toast.LENGTH_SHORT).show();
 
 
