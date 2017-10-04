@@ -7,6 +7,7 @@ import com.taskcar.model.VehiculoPost;
 import com.taskcar.retrofit.Response.CitaResponse;
 import com.taskcar.retrofit.Response.LoginResponse;
 import com.taskcar.retrofit.Response.RegistroResponse;
+import com.taskcar.retrofit.Response.ServiciosResponse;
 import com.taskcar.retrofit.Response.TalleresResponse;
 import com.taskcar.retrofit.Response.VehiculoResponse;
 
@@ -25,6 +26,9 @@ public interface AtencionVehicularService {
 
     @GET("listarTalleres")
     Call<TalleresResponse> getTalleres();
+
+    @GET("listarServicios")
+    Call<ServiciosResponse> getServicios();
 
     @POST("registrarCita")
     Call<CitaResponse> postRegistrarCita(  @Body CitaPost citaPost);

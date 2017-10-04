@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
-
+    public static boolean ingreso;
     ViewPager viewPager;
     com.taskcar.customSwip customSwip;
-
+    final ArrayList<MenuList> menuLists = new ArrayList<MenuList>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,17 +77,31 @@ public class MainActivity extends AppCompatActivity {
         customSwip=new customSwip(this);
         viewPager.setAdapter(customSwip);
 
+        if (ingreso){
+            menuLists.clear();
 
-        final ArrayList<MenuList> menuLists = new ArrayList<MenuList>();
-
-
-            menuLists.add(new MenuList("Iniciar Sesión", R.drawable.ic_iniciarsesion));
             menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
             menuLists.add (new MenuList("Historia Vehicular", R.drawable.ic_historia_vehicular));
             menuLists.add(new MenuList("Talleres", R.drawable.ic_concecionario));
             menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
             menuLists.add(new MenuList("Salir", R.drawable.ic_close));
 
+        }else{
+            menuLists.clear();
+
+            menuLists.add(new MenuList("Iniciar Sesión", R.drawable.ic_iniciarsesion));
+            menuLists.add(new MenuList("Talleres", R.drawable.ic_concecionario));
+            menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
+            menuLists.add(new MenuList("Salir", R.drawable.ic_close));
+
+        }
+
+        //menuLists.add(new MenuList("Iniciar Sesión", R.drawable.ic_iniciarsesion));
+        //menuLists.add(new MenuList("Gestionar Citas", R.drawable.ic_date));
+        //menuLists.add (new MenuList("Historia Vehicular", R.drawable.ic_historia_vehicular));
+        //menuLists.add(new MenuList("Talleres", R.drawable.ic_concecionario));
+        //menuLists.add(new MenuList("Showroom", R.drawable.ic_showroom));
+        //menuLists.add(new MenuList("Salir", R.drawable.ic_close));
 
         MenuList_Adapter adapterMenu = new MenuList_Adapter(this, menuLists, R.color.colorPrimary);
 
@@ -101,6 +115,48 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 MenuList menuList = menuLists.get(position);
+
+                if(ingreso){
+                    switch(position){
+
+                        case 0: Intent citaActivity = new Intent(MainActivity.this, CitasActivity.class);
+                            startActivity(citaActivity);
+                            break;
+                        case 1: Intent historiaActivity = new Intent(MainActivity.this, HistoriaVehicular.class);
+                            startActivity(historiaActivity);
+                            break;
+                        case 2: Intent tallerActivity = new Intent(MainActivity.this, SeleccionarTaller.class);
+                            startActivity(tallerActivity);
+                            break;
+                        case 3: Intent showRoomActivity = new Intent(MainActivity.this, ShowRoomMain.class);
+                            startActivity(showRoomActivity);
+                            break;
+                        case 4:
+                            ingreso= false;
+                            finish();
+                            startActivity(getIntent());
+                            break;
+                    }
+                }else{
+
+                    switch(position){
+                        case 0: Intent registerActivity = new Intent(MainActivity.this, RegisterActivity.class);
+                            startActivity(registerActivity);
+                            break;
+                        case 1: Intent tallerActivity = new Intent(MainActivity.this, SeleccionarTaller.class);
+                            startActivity(tallerActivity);
+                            break;
+                        case 2: Intent showRoomActivity = new Intent(MainActivity.this, ShowRoomMain.class);
+                            startActivity(showRoomActivity);
+                            break;
+                        case 3:
+                            finish();
+                            break;
+                    }
+
+
+                }
+                /*
                 switch(position){
                     case 0: Intent registerActivity = new Intent(MainActivity.this, RegisterActivity.class);
                             startActivity(registerActivity);
@@ -121,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         break;
                 }
-
+                */
             }
         });
 

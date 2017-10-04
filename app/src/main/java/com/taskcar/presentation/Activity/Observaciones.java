@@ -6,15 +6,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.taskcar.R;
+import com.taskcar.model.Servicio;
+import com.taskcar.retrofit.AtencionVehicularAdapter;
+import com.taskcar.retrofit.Response.ServiciosResponse;
+import com.taskcar.retrofit.Response.TalleresResponse;
 
-public class Observaciones extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
+public class Observaciones extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    Spinner spinner;
+    public static Integer tipoServicio;
+    final ArrayList<Servicio> servicioList = new ArrayList<Servicio>();
+    ArrayAdapter<String> dataAdapter;
+    private List<String> serviceList = new ArrayList<>();
+    //List<String> listaServicios  ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +50,14 @@ public class Observaciones extends AppCompatActivity {
 
         LinearLayout tipo_mantenimiento = (LinearLayout) findViewById(R.id.tipo_mantenimiento);
         final Button btn_continuar = (Button) findViewById(R.id.btn_continuar);
-        Toast.makeText(Observaciones.this,secondValue, Toast.LENGTH_SHORT).show();
+        obtenerServicios();
+
+        spinner = (Spinner) findViewById(R.id.servicios_spinner);
+
+
+        loadSpinnerData();
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
 
        if (firstValue.equals("1")) {
            tipo_mantenimiento.setVisibility(View.VISIBLE);
@@ -63,4 +92,75 @@ public class Observaciones extends AppCompatActivity {
 
 
     }
+
+    private void obtenerServicios(){
+        Call<ServiciosResponse> call = AtencionVehicularAdapter.getApiService().getServicios();
+        call.enqueue(new ServiciosCallback());
+    }
+    private void poblarListaServicios(List<Servicio> servicios){
+        serviceList.clear();
+        servicioList.clear();
+        for (Servicio r: servicios){
+            servicioList.add(new Servicio(r.getNombreServicio(),r.getIdServicio()));
+            serviceList.add(r.getNombreServicio());
+        }
+        dataAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String label = parent.getItemAtPosition(position).toString();
+       // ((TextView) view).setTextColor(Color.RED);
+        // Showing selected spinner item
+        //Toast.makeText(parent.getContext(), "You selected: " + label, Toast.LENGTH_LONG).show();
+        tipoServicio=servicioList.get(position).getIdServicio();
+    }
+
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+
+    class  ServiciosCallback implements Callback<ServiciosResponse>{
+
+
+        @Override
+        public void onResponse(Call<ServiciosResponse> call, Response<ServiciosResponse> response) {
+            if (response.isSuccessful()){
+                ServiciosResponse serviciosResponse = response.body();
+                poblarListaServicios(serviciosResponse.getServicios());
+
+            }else{
+                Toast.makeText(getApplicationContext(),"Error en el formato ", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ServiciosResponse> call, Throwable t) {
+
+        }
+    }
+
+    private void loadSpinnerData() {
+
+        // Spinner Drop down elements
+        //List<String> lables = db.getAllLabels();
+        //serviceList.add("hugo");
+        // Creating adapter for spinner
+         dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, serviceList);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
+
+    }
+
 }

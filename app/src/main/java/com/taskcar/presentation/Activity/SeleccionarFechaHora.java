@@ -200,7 +200,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                     finishAffinity();
                 }
 
-                CitaPost registroCita = new CitaPost(SeleccionarServicio.placa,horarioCita,"1","1", sTab1Fragment.tipoHorario);
+                CitaPost registroCita = new CitaPost(SeleccionarServicio.placa,horarioCita,"1",Observaciones.tipoServicio.toString(), sTab1Fragment.tipoHorario);
                 //CitaPost registroCita = new CitaPost("KIM789");
                 Call<CitaResponse> call = AtencionVehicularAdapter.getApiService().postRegistrarCita(registroCita);
                 call.enqueue(new RegistrarCitaCallback());

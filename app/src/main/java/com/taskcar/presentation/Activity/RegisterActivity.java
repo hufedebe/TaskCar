@@ -80,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
                 if (loginResponse.getMensaje().getStatus()==200){
 
                     Toast.makeText(getApplicationContext(),"Inicio de Sesión Correcta", Toast.LENGTH_SHORT).show();
+                    MainActivity.ingreso= true;
                     Intent loguearse  = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(loguearse);
 

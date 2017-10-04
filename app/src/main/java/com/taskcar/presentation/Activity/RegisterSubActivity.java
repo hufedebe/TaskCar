@@ -24,6 +24,7 @@ public class RegisterSubActivity extends AppCompatActivity {
         ImageView btn_inicio = (ImageView) findViewById(R.id.btn_inicio);
         TextView texto_bienvenida = (TextView) findViewById(R.id.txt_name);
 
+
         texto_bienvenida.setText("Bienvenido "+RegisterMainActivity.nombreUsuario+" !!");
 
         btn_vehiculo.setOnClickListener(new View.OnClickListener() {
