@@ -67,7 +67,7 @@ public class RegisterMainActivity extends AppCompatActivity {
             if(response.isSuccessful()){
                 RegistroResponse registroResponse = response.body();
                 if (registroResponse.getMensaje().getStatus()==200){
-
+                    RegisterActivity.dniUsuario="";
                     Toast.makeText(getApplicationContext(),"Se registró correctamente ", Toast.LENGTH_SHORT).show();
                     Intent register = new Intent(RegisterMainActivity.this,RegisterSubActivity.class);
                     startActivity(register);

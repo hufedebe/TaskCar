@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements SensorEventLi
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                    RegisterMainActivity.dniUsuario="";
                     dniUsuario = usuario.getText().toString();
                     LoginPost loginPersona = new LoginPost(usuario.getText().toString(),password.getText().toString());
                     Call<LoginResponse> call = AtencionVehicularAdapter.getApiService().postLoginPersona(loginPersona);

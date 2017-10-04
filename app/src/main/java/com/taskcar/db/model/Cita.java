@@ -7,6 +7,7 @@ package com.taskcar.db.model;
 public class Cita {
 
     private int id;
+    private String dni;
     private String idEvento;
     private String idTaller;
     private String nombreTaller;
@@ -47,6 +48,23 @@ public class Cita {
         this.setIdServicio(idServicio);
         this.setTipoServicio(tipoServicio);
     }
+
+    public Cita( String idEvento,String dni, String idTaller,String nombreTaller,String direccionTaller, String placa,
+                 String diaHoraEvento, String idServicio, String tipoServicio){
+
+
+        this.setIdEvento(idEvento);
+        this.setDni(dni);
+        this.setIdTaller(idTaller);
+        this.setNombreTaller(nombreTaller);
+        this.setDireccionTaller(direccionTaller);
+        this.setPlaca(placa);
+        this.setDiaHoraEvento(diaHoraEvento);
+        this.setIdServicio(idServicio);
+        this.setTipoServicio(tipoServicio);
+    }
+
+
 
     public int getId() {
         return id;
@@ -118,5 +136,13 @@ public class Cita {
 
     public void setTipoServicio(String tipoServicio) {
         this.tipoServicio = tipoServicio;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 }

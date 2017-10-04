@@ -38,8 +38,14 @@ public class CitasActivity extends AppCompatActivity {
             }
         });
 
-
-
+        String usuario;
+        if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
+            usuario = RegisterMainActivity.dniUsuario;
+        }else if(RegisterActivity.dniUsuario!=null && !RegisterActivity.dniUsuario.isEmpty()){
+            usuario = RegisterActivity.dniUsuario;
+        }else{
+            usuario = "12345678";
+        }
        // final ArrayList<CitaEntity> citaLists = new ArrayList<CitaEntity>();
 
 
@@ -49,7 +55,7 @@ public class CitasActivity extends AppCompatActivity {
          //                               "YX1234"));
 
         citaLists.clear();
-        citaLists.addAll(db.getAllCitas());
+        citaLists.addAll(db.getAllCitasDNI(usuario));
 
         //carLists.add(new CarEntity("YX123","Nissan","GTL", R.drawable.ic_dcar));
 

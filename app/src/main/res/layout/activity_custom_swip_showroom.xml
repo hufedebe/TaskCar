@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#212121">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
+        android:textColor="#FFFFFF"
         />
     <TextView
         android:id="@+id/text2_showRoom"
@@ -28,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aros de Aleación:  "
+            android:textColor="#FFFFFF"
             android:textSize="15dp"/>
         <TextView
             android:id="@+id/txt_aros"
@@ -48,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Motor: "
+            android:textColor="#FFFFFF"
             android:textSize="15dp"/>
         <TextView
             android:id="@+id/txt_motor"
@@ -67,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Seguridad: "
+            android:textColor="#FFFFFF"
             android:textSize="15dp"/>
 
         <TextView
@@ -87,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transmisión: "
+            android:textColor="#FFFFFF"
             android:textSize="15dp"/>
         <TextView
             android:id="@+id/txt_transmision"

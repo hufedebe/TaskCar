@@ -46,7 +46,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
     private Button btn_generarCita;
     String init, finit, minit,mfin;
     String aperturamin, cierremin;
-    String dia, mes, ano;
+    String dia, mes, ano,usuario;
     String horarioCita;
     final DatabaseHelper db = new DatabaseHelper(this);
     String idTaller, nombreTaller, direccionTaller;
@@ -64,6 +64,15 @@ public class SeleccionarFechaHora extends AppCompatActivity {
         nombreTaller = getResults.getStringExtra("nombreTaller");
          direccionTaller = getResults.getStringExtra("direccionTaller");
 
+
+        //Validación del usuario
+        if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
+            usuario = RegisterMainActivity.dniUsuario;
+        }else if(RegisterActivity.dniUsuario!=null && !RegisterActivity.dniUsuario.isEmpty()){
+            usuario = RegisterActivity.dniUsuario;
+        }else{
+            usuario = "12345678";
+        }
 
         //String horario = getResults.getStringExtra("horario");
 
@@ -225,7 +234,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                 CitaResponse citaResponse = response.body();
                 if (citaResponse.getMensaje().getStatus()==200){
                     Log.d("getTasksListHTTP", "Taller" + nombreTaller);
-                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),idTaller,nombreTaller,direccionTaller,SeleccionarServicio.placa,horarioCita,"1","1"));
+                    db.addCita(new Cita(citaResponse.getMensaje().getIdEvento().toString(),usuario,idTaller,nombreTaller,direccionTaller,SeleccionarServicio.placa,horarioCita,"1","1"));
                     //db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
                     Toast.makeText(getApplicationContext(),"Se registró correctamente la cita", Toast.LENGTH_LONG).show();
 

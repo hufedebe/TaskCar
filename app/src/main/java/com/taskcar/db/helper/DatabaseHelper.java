@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
 
     // Database Name
     private static final String DATABASE_NAME = "taskCarManager";
@@ -60,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table Create Statements
 
     private static  final String CREATE_TABLE_CITA = "CREATE TABLE "+ TABLE_CITA+ "("+KEY_ID+ " INTEGER PRIMARY KEY, "+
-                                                        KEY_EVENTO+" TEXT," + KEY_TALLER+ " TEXT,"+KEY_NOMBRE_TALLER+ " TEXT,"+ KEY_PLACA+" TEXT,"+
+                                                        KEY_EVENTO+" TEXT," + KEY_DNI+ " TEXT," +KEY_TALLER+ " TEXT,"+KEY_NOMBRE_TALLER+ " TEXT,"+ KEY_PLACA+" TEXT,"+
                                                         KEY_DESCRIPCION_TALLER+" TEXT," + KEY_FECHA_EVENTO+ " TEXT,"+
                                                         KEY_ID_SERVICIO+" TEXT,"+ KEY_TIPO_SERVICIO+ " TEXT" +")";
 
@@ -160,6 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_EVENTO,cita.getIdEvento());
+        values.put(KEY_DNI,cita.getDni());
         values.put(KEY_TALLER,cita.getIdTaller());
         values.put(KEY_TALLER, cita.getNombreTaller());
         values.put(KEY_PLACA, cita.getPlaca()); // Contact Name
@@ -222,6 +223,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+
+    public  List<Cita> getAllCitasDNI(String dni){
+        List<Cita> citaList = new ArrayList<Cita>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE DNI = '"+dni+"'";;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Cita cita = new Cita();
+                cita.setId(Integer.parseInt(cursor.getString(0)));
+                cita.setIdEvento(cursor.getString(1));
+                cita.setDni(cursor.getString(2));
+                cita.setIdTaller(cursor.getString(3));
+                cita.setNombreTaller(cursor.getString(4));
+                cita.setPlaca(cursor.getString(5));
+                cita.setDireccionTaller(cursor.getString(6));
+                cita.setDiaHoraEvento(cursor.getString(7));
+                cita.setIdServicio(cursor.getString(8));
+                cita.setTipoServicio(cursor.getString(9));
+
+
+                // Adding contact to list
+                citaList.add(cita);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return citaList;
+
+
+    }
+
     // Getting All Vehiculos
     public List<Car> getAllCars() {
         List<Car> carList = new ArrayList<Car>();
@@ -250,6 +287,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return contact list
         return carList;
     }
+
+    public List<Car> getAllCarsDNI( String dni) {
+        List<Car> carList = new ArrayList<Car>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_VEHICULO + " WHERE DNI = '"+dni+"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Car car = new Car();
+                car.setId(Integer.parseInt(cursor.getString(0)));
+                car.setPlaca(cursor.getString(1));
+                car.setDni(cursor.getString(2));
+                car.setMarca(cursor.getString(3));
+                car.setModelo(cursor.getString(4));
+                car.setAnio(cursor.getString(5));
+
+                // Adding contact to list
+                carList.add(car);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return carList;
+    }
+
+
 
     public void deleteCar(Car car) {
         SQLiteDatabase db = this.getWritableDatabase();

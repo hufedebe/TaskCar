@@ -159,7 +159,7 @@ public class RegistrarVehiculo extends AppCompatActivity implements OnItemSelect
             if(response.isSuccessful()){
                 VehiculoResponse vehiculoResponse = response.body();
                 if (vehiculoResponse.getMensaje().getStatus()==200){
-                    db.addCar(new Car(placaVehiculo.getText().toString(), textMarca,textModelo));
+                    db.addCar(new Car(placaVehiculo.getText().toString(),usuario ,textMarca,textModelo));
                     Toast.makeText(getApplicationContext(),"Se registró correctamente ", Toast.LENGTH_SHORT).show();
 
                     Intent seleccionarVehiculo = new Intent(RegistrarVehiculo.this, SeleccionarVehiculo.class);

@@ -34,6 +34,15 @@ public class Car {
         this.anio = anio;
     }
 
+
+    public Car (String placa, String dni, String marca, String modelo){
+        this.placa = placa;
+        this.dni= dni;
+        this.marca= marca;
+        this.modelo= modelo;
+
+    }
+
     public Car (String placa, String marca, String modelo){
         this.placa = placa;
         this.marca = marca;

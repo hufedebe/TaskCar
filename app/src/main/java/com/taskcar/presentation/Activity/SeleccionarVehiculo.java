@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.taskcar.R;
 import com.taskcar.adapter.CarList_Adapter;
@@ -31,7 +32,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccionar_vehiculo);
-
+        String usuario;
         Toolbar mtoolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView agregarAuto = (TextView) findViewById(R.id.txt_AgregarAuto);
         mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -42,9 +43,16 @@ public class SeleccionarVehiculo extends AppCompatActivity {
         });
 
         //Data dummy para visualizar una cita
-
+        if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
+            usuario = RegisterMainActivity.dniUsuario;
+        }else if(RegisterActivity.dniUsuario!=null && !RegisterActivity.dniUsuario.isEmpty()){
+            usuario = RegisterActivity.dniUsuario;
+        }else{
+            usuario = "12345678";
+        }
+        Toast.makeText(getApplicationContext(),usuario, Toast.LENGTH_LONG).show();
         carLists.clear();
-        carLists.addAll(db.getAllCars());
+        carLists.addAll(db.getAllCarsDNI(usuario));
 
         //carLists.add(new CarEntity("YX123","Nissan","GTL", R.drawable.ic_dcar));
 
