@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.taskcar.R;
 import com.taskcar.presentation.Showroom.ShowroomActivity;
@@ -51,8 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case R.id.menu_citas:
-                        Intent citaActivity = new Intent(MainActivity.this, CitasActivity.class);
-                        startActivity(citaActivity);
+                        if(ingreso){
+                            Intent citaActivity = new Intent(MainActivity.this, CitasActivity.class);
+                            startActivity(citaActivity);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Debe iniciar Sesión para Generar una Cita", Toast.LENGTH_LONG).show();
+                        }
+
                         break;
                     case R.id.menu_talleres:
                         Intent tallerActivity = new Intent(MainActivity.this, SeleccionarTaller.class);

@@ -50,7 +50,7 @@ public class SeleccionarVehiculo extends AppCompatActivity {
         }else{
             usuario = "12345678";
         }
-        Toast.makeText(getApplicationContext(),usuario, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),usuario, Toast.LENGTH_LONG).show();
         carLists.clear();
         carLists.addAll(db.getAllCarsDNI(usuario));
 

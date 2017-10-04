@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +35,7 @@ import com.taskcar.retrofit.Response.VehiculoResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +52,9 @@ public class SeleccionarFechaHora extends AppCompatActivity {
     String horarioCita;
     final DatabaseHelper db = new DatabaseHelper(this);
     String idTaller, nombreTaller, direccionTaller;
+    CalendarView calendarView;
+    String curDate;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
         nombreTaller = getResults.getStringExtra("nombreTaller");
          direccionTaller = getResults.getStringExtra("direccionTaller");
 
+        calendarView = (CalendarView) findViewById(R.id.calendar);
 
         //Validación del usuario
         if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
@@ -126,7 +132,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
         }
 
 
-
+        curDate = sdf.format(calendarView.getDate());
         //Toast.makeText(getApplicationContext(),horarios.get(2), Toast.LENGTH_LONG).show();
         final HorarioList_Adapter adapterHorario = new HorarioList_Adapter(this, horarioList);
 
@@ -136,34 +142,28 @@ public class SeleccionarFechaHora extends AppCompatActivity {
 
         listView.setAdapter(adapterHorario);
 
-       CalendarView calendarView = (CalendarView) findViewById(R.id.calendar);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        final String curDate = sdf.format(calendarView.getDate());
-
-        calendarView.getDate();
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month,
-                                            int dayOfMonth) {
-                //int d = dayOfMonth;
-                //curDate =String.valueOf(d);
-                ano = String.valueOf(year);
-                if (month>9){
-                    mes = String.valueOf(month);
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String vmonth,vday,vyear;
+
+                if(month<10){
+                    vmonth="0"+String.valueOf(month);
                 }else{
-                    mes = "0"+ String.valueOf(month);
+                    vmonth=String.valueOf(month);
                 }
-
-                if (dayOfMonth>9){
-                    dia = String.valueOf(dayOfMonth);
+                if(dayOfMonth<10){
+                    vday="0"+String.valueOf(dayOfMonth);
                 }else{
-                    dia = "0"+ String.valueOf(dayOfMonth);
+                    vday=String.valueOf(dayOfMonth);
                 }
-
-
+                vyear= String.valueOf(year);
+                curDate=vday+"/"+vmonth+"/"+vyear;
+                Toast.makeText(getApplicationContext(), curDate, Toast.LENGTH_LONG).show();
             }
         });
+
+
 
 
         btn_generarCita = (Button) findViewById(R.id.btn_generarCita);
@@ -173,6 +173,9 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             public void onClick(View v) {
 
                 Integer positiond=adapterHorario.selectedPosition;
+
+
+                // curDate = sdf.format(calendarView.getDate());
 
                 String data = horarioList.get(positiond).getHorario();
                 String hora = data;
@@ -263,4 +266,9 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Error en la estructura", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
+
 }
