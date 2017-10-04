@@ -53,7 +53,7 @@ public class TallerList_Adapter extends ArrayAdapter {
 
         nombreTaller.setText(currentTaller.getNombreTaller());
         direccionTaller.setText(currentTaller.getDireccionTaller());
-        mRatingBar.setRating(4);
+        mRatingBar.setRating(currentTaller.getPuntuacion());
 
         LinearLayout taller = (LinearLayout) listItemView.findViewById(R.id.taller_1);
         taller.setOnClickListener(new View.OnClickListener() {

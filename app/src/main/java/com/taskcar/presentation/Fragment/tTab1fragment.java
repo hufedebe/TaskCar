@@ -66,7 +66,7 @@ public class tTab1fragment extends Fragment {
             tallerLists.add(new Taller(r.getAperturaNocturno(),r.getLatitud(),r.getCierreNocturno(),
                                             r.getTelefonoTaller(),r.getAperturaExpress(),r.getAtencionesExpress(),
                                             r.getAperturaDiurno(),r.getAtencionesNocturno(),r.getCierreExpress(),
-                                            r.getNombreTaller(),r.getLongitud(),r.getAtencionesDiurno(), r.getDireccionTaller(),
+                                            r.getNombreTaller(),r.getLongitud(),r.getPuntuacion(),r.getAtencionesDiurno(), r.getDireccionTaller(),
                                             r.getIdTaller(),r.getCierreDiurno()));
 
         }

@@ -28,6 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static java.security.AccessController.getContext;
 
 public class Observaciones extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -73,7 +74,7 @@ public class Observaciones extends AppCompatActivity implements AdapterView.OnIt
 
         if (secondValue.equals("1")) {
             tipo_mantenimiento.setVisibility(View.VISIBLE);
-            mantenimiento = true;
+            mantenimiento = false;
         }
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
@@ -107,9 +108,23 @@ public class Observaciones extends AppCompatActivity implements AdapterView.OnIt
         servicioList.clear();
         String bandera;
         for (Servicio r: servicios){
+            bandera=r.getNombreServicio();
+            bandera=bandera.substring(0,2);
+            //Toast.makeText(getApplicationContext(),bandera, Toast.LENGTH_SHORT).show();
+            if(mantenimiento){
 
+                if(bandera.equals("Ma")){
                     servicioList.add(new Servicio(r.getNombreServicio(),r.getIdServicio()));
                     serviceList.add(r.getNombreServicio());
+                }
+
+            }else{
+                if(!bandera.equals("Ma")){
+                    servicioList.add(new Servicio(r.getNombreServicio(),r.getIdServicio()));
+                    serviceList.add(r.getNombreServicio());
+                }
+            }
+
 
 
         }

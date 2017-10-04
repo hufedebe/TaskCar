@@ -16,6 +16,7 @@ public class Taller {
     private String cierreExpress;
     private String nombreTaller;
     private Float longitud;
+    private Integer puntuacion;
     private Integer atencionesDiurno;
     private String direccionTaller;
     private Integer idTaller;
@@ -24,7 +25,7 @@ public class Taller {
     public Taller(String aperturaNocturno, Float latitud, String cierreNocturno, Integer telefonoTaller,
                         String aperturaExpress, Integer atencionesExpress,
                         String aperturaDiurno, Integer atencionesNocturno,
-                        String cierreExpress, String nombreTaller, Float longitud,
+                        String cierreExpress, String nombreTaller, Float longitud, Integer puntuacion,
                         Integer atencionesDiurno, String direccionTaller, Integer idTaller, String cierreDiurno){
         this.aperturaNocturno= aperturaNocturno;
         this.latitud= latitud;
@@ -36,6 +37,7 @@ public class Taller {
         this.atencionesNocturno = atencionesNocturno;
         this.cierreExpress = cierreExpress;
         this.nombreTaller = nombreTaller;
+        this.puntuacion=puntuacion;
         this.longitud = longitud;
         this.atencionesDiurno = atencionesDiurno;
         this.direccionTaller= direccionTaller;
@@ -161,5 +163,13 @@ public class Taller {
 
     public void setCierreDiurno(String cierreDiurno) {
         this.cierreDiurno = cierreDiurno;
+    }
+
+    public Integer getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(Integer puntuacion) {
+        this.puntuacion = puntuacion;
     }
 }
