@@ -31,6 +31,7 @@ public class sTab1Fragment extends Fragment{
     private TextView txtExpress;
     public ViewPager viewPager;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

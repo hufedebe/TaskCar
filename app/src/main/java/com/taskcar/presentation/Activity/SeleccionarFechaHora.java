@@ -107,9 +107,24 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             do{
                 Integer flag = minutos +15;
                 if (minutos==0) {
-                    horarioList.add(new HorarioEntity((i.toString() + ":" + minutos.toString()+"0" + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+                    if(i<10){
+                        horarioList.add(new HorarioEntity(("0"+i.toString() + ":" + minutos.toString()+"0" + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+                    }else {
+                        horarioList.add(new HorarioEntity((i.toString() + ":" + minutos.toString() + "0" + " - " + i.toString() + ":" + flag.toString() + " (" + atenciones + ")")));
+                    }
                 }else{
-                    horarioList.add(new HorarioEntity((i.toString() + ":" + minutos.toString() + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+                    if((i<10)&& (minutos<10)){
+                        horarioList.add(new HorarioEntity(("0"+i.toString() + ":0" + minutos.toString() + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+
+                    }else if(i<10){
+
+                        horarioList.add(new HorarioEntity(("0"+i.toString() + ":" + minutos.toString() + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+
+                    }else if(minutos<10){
+                        horarioList.add(new HorarioEntity((i.toString() + ":0" + minutos.toString() + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+                    }else{
+                        horarioList.add(new HorarioEntity((i.toString() + ":" + minutos.toString() + " - " + i.toString() + ":" + flag.toString()+ " ("+atenciones+ ")")));
+                    }
 
                 }
 

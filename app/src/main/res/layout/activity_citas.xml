@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#FAFAFA"
-                android:text="Buenas tardes Ronald, estas son tus citas pendientes:"
+                android:text="Buenas tardes , estas son tus citas pendientes:"
                 android:textSize="20dp"/>
 
 

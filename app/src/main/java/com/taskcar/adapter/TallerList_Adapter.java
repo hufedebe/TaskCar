@@ -20,6 +20,7 @@ import com.taskcar.model.Taller;
 import com.taskcar.presentation.Activity.Observaciones;
 import com.taskcar.presentation.Activity.SeleccionarFechaHora;
 import com.taskcar.presentation.Activity.SeleccionarVehiculo;
+import com.taskcar.presentation.Fragment.sTab1Fragment;
 
 import java.util.ArrayList;
 
@@ -61,9 +62,27 @@ public class TallerList_Adapter extends ArrayAdapter {
                // Toast.makeText(getApplicationContext(),"Si selecciona ", Toast.LENGTH_SHORT).show();
                 Intent reparacion = new Intent(getApplicationContext(), SeleccionarFechaHora.class);
 
-                reparacion.putExtra("apertura",currentTaller.getAperturaDiurno());
-                reparacion.putExtra("cierre", currentTaller.getCierreDiurno());
-                reparacion.putExtra("atenciones", currentTaller.getAtencionesDiurno().toString());
+                String bandera = sTab1Fragment.tipoHorario;
+                if(bandera=="D"){
+                    reparacion.putExtra("apertura",currentTaller.getAperturaDiurno());
+                    reparacion.putExtra("cierre", currentTaller.getCierreDiurno());
+                    reparacion.putExtra("atenciones", currentTaller.getAtencionesDiurno().toString());
+
+                }
+                if(bandera=="E"){
+                    reparacion.putExtra("apertura",currentTaller.getAperturaExpress());
+                    reparacion.putExtra("cierre", currentTaller.getCierreExpress());
+                    reparacion.putExtra("atenciones", currentTaller.getAtencionesExpress().toString());
+
+                }
+                if(bandera=="N"){
+                    reparacion.putExtra("apertura",currentTaller.getAperturaNocturno());
+                    reparacion.putExtra("cierre", currentTaller.getCierreNocturno());
+                    reparacion.putExtra("atenciones", currentTaller.getAtencionesNocturno().toString());
+
+                }
+
+
                 reparacion.putExtra("idTaller",currentTaller.getIdTaller().toString());
                 reparacion.putExtra("nombreTaller",currentTaller.getNombreTaller());
                 reparacion.putExtra("direccionTaller",currentTaller.getDireccionTaller());

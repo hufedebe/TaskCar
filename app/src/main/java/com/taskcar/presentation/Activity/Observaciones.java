@@ -32,6 +32,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class Observaciones extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner spinner;
+    Boolean mantenimiento;
+
     public static Integer tipoServicio;
     final ArrayList<Servicio> servicioList = new ArrayList<Servicio>();
     ArrayAdapter<String> dataAdapter;
@@ -61,14 +63,17 @@ public class Observaciones extends AppCompatActivity implements AdapterView.OnIt
 
        if (firstValue.equals("1")) {
            tipo_mantenimiento.setVisibility(View.VISIBLE);
+           mantenimiento= true;
        }
 
         if (thirdValue.equals("1")) {
             tipo_mantenimiento.setVisibility(View.VISIBLE);
+            mantenimiento = true;
         }
 
         if (secondValue.equals("1")) {
-            tipo_mantenimiento.setVisibility(View.GONE);
+            tipo_mantenimiento.setVisibility(View.VISIBLE);
+            mantenimiento = true;
         }
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
@@ -100,9 +105,13 @@ public class Observaciones extends AppCompatActivity implements AdapterView.OnIt
     private void poblarListaServicios(List<Servicio> servicios){
         serviceList.clear();
         servicioList.clear();
+        String bandera;
         for (Servicio r: servicios){
-            servicioList.add(new Servicio(r.getNombreServicio(),r.getIdServicio()));
-            serviceList.add(r.getNombreServicio());
+
+                    servicioList.add(new Servicio(r.getNombreServicio(),r.getIdServicio()));
+                    serviceList.add(r.getNombreServicio());
+
+
         }
         dataAdapter.notifyDataSetChanged();
 
