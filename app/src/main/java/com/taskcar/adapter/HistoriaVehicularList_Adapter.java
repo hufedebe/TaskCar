@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.taskcar.R;
 import com.taskcar.data.entity.CitaEntity;
+import com.taskcar.db.model.Historia;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,8 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
 
 
     private int amImageResourceId;
-    public HistoriaVehicularList_Adapter(Context context, ArrayList<CitaEntity> citaEntity ){
-        super(context, 0 , citaEntity);
+    public HistoriaVehicularList_Adapter(Context context, ArrayList<Historia> historia ){
+        super(context, 0 , historia);
 
 
     }
@@ -37,7 +38,7 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
         }
 
         // Get the {@link AndroidFlavor} object located at this position in the list
-        CitaEntity currentCita = (CitaEntity) getItem(position);
+        Historia currentHistoria = (Historia) getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_number
       //  TextView menuTextView = (TextView) listItemView.findViewById(R.id.menu_text_view);
@@ -50,10 +51,10 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
 
 
-        nombreTaller.setText(currentCita.getNombreTaller());
-        direccionTaller.setText(currentCita.getDireccion());
-        horario.setText(currentCita.getHorario());
-        placa.setText(currentCita.getPlaca());
+        nombreTaller.setText(currentHistoria.getNombreTaller());
+        direccionTaller.setText(currentHistoria.getDireccionTaller());
+        horario.setText(currentHistoria.getDiaHoraEvento());
+        placa.setText(currentHistoria.getPlaca());
 
 
 

@@ -5,6 +5,7 @@ import com.taskcar.model.LoginPost;
 import com.taskcar.model.RegistroPost;
 import com.taskcar.model.VehiculoPost;
 import com.taskcar.retrofit.Response.CitaResponse;
+import com.taskcar.retrofit.Response.ListarEventosResponse;
 import com.taskcar.retrofit.Response.LoginResponse;
 import com.taskcar.retrofit.Response.RegistroResponse;
 import com.taskcar.retrofit.Response.ServiciosResponse;
@@ -17,6 +18,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by Hudeya on 12/09/2017.
@@ -41,6 +43,10 @@ public interface AtencionVehicularService {
 
     @POST("loginPersona")
     Call<LoginResponse> postLoginPersona(@Body LoginPost loginPost);
+
+    @GET("listarEventos")
+    Call<ListarEventosResponse> geListarEventos(@Query("placa") String placa);
+
 
 
 
