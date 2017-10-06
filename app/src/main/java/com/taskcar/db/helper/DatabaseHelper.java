@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 9;
 
     // Database Name
     private static final String DATABASE_NAME = "taskCarManager";
@@ -337,44 +337,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public  Cita getAllCitasIdEvento(String idEvento){
+
+
+        Cursor cursor = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cita cita = new Cita();
+        try {
+            cursor = db.rawQuery("SELECT * FROM"+ TABLE_CITA+"WHERE ID_EVENTO=?", new String[] {idEvento + ""});
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                cita.setId(Integer.parseInt(cursor.getString(0)));
+                cita.setIdEvento(cursor.getString(1));
+                cita.setDni(cursor.getString(2));
+                cita.setIdTaller(cursor.getString(3));
+                cita.setNombreTaller(cursor.getString(4));
+                cita.setPlaca(cursor.getString(5));
+                cita.setDireccionTaller(cursor.getString(6));
+                cita.setDiaHoraEvento(cursor.getString(7));
+                cita.setIdServicio(cursor.getString(8));
+                cita.setTipoServicio(cursor.getString(9));
+            }
+            return cita;
+        }finally {
+            cursor.close();
+        }
        // List<Cita> citaList = new ArrayList<Cita>();
         // Select All Query
+        /*
         String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE ID_EVENTO = '"+idEvento+"'";;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
         Cita cita = new Cita();
-        cita.setId(Integer.parseInt(cursor.getString(0)));
-        cita.setIdEvento(cursor.getString(1));
-        cita.setDni(cursor.getString(2));
-        cita.setIdTaller(cursor.getString(3));
-        cita.setNombreTaller(cursor.getString(4));
-        cita.setPlaca(cursor.getString(5));
-        cita.setDireccionTaller(cursor.getString(6));
-        cita.setDiaHoraEvento(cursor.getString(7));
-        cita.setIdServicio(cursor.getString(8));
-        cita.setTipoServicio(cursor.getString(9));
+        if (cursor.moveToFirst()){
+            // do the
 
-        // return contact
-        return cita;
-        // looping through all rows and adding to list
-        /*
-        if (cursor.moveToFirst()) {
-            do {
-                Cita cita = new Cita();
-
-
-                // Adding contact to list
-                citaList.add(cita);
-            } while (cursor.moveToNext());
+            cita.setId(Integer.parseInt(cursor.getString(0)));
+            cita.setIdEvento(cursor.getString(1));
+            cita.setDni(cursor.getString(2));
+            cita.setIdTaller(cursor.getString(3));
+            cita.setNombreTaller(cursor.getString(4));
+            cita.setPlaca(cursor.getString(5));
+            cita.setDireccionTaller(cursor.getString(6));
+            cita.setDiaHoraEvento(cursor.getString(7));
+            cita.setIdServicio(cursor.getString(8));
+            cita.setTipoServicio(cursor.getString(9));
         }
+  */
 
-        // return contact list
-        return citaList;
-        */
 
     }
     // Getting All Vehiculos

@@ -3,6 +3,7 @@ package com.taskcar.presentation.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -30,11 +31,18 @@ public class HistoriaVehicular extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String usuario;
         setContentView(R.layout.activity_historia_vehicular);
-
+        if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
+            usuario = RegisterMainActivity.dniUsuario;
+        }else if(RegisterActivity.dniUsuario!=null && !RegisterActivity.dniUsuario.isEmpty()){
+            usuario = RegisterActivity.dniUsuario;
+        }else{
+            usuario = "12345678";
+        }
         obtenerHistoriaVehicular();
         eventoList.clear();
-        eventoList.addAll(db.getAllHistoriaDNI("71918340"));
+        eventoList.addAll(db.getAllHistoriaDNI(usuario));
 
         HistoriaVehicularList_Adapter adapter_Hitoria = new HistoriaVehicularList_Adapter(this, eventoList);
 
@@ -56,7 +64,7 @@ public class HistoriaVehicular extends AppCompatActivity {
     }
 
     private void obtenerHistoriaVehicular(){
-        Call<ListarEventosResponse> call = AtencionVehicularAdapter.getApiService().geListarEventos("QWE105");
+        Call<ListarEventosResponse> call = AtencionVehicularAdapter.getApiService().geListarEventos(SeleccionarServicio.placa);
         call.enqueue(new ListarEventosCallback());
     }
 
@@ -65,23 +73,29 @@ public class HistoriaVehicular extends AppCompatActivity {
 
         String bandera;
         for (Evento r: eventos){
-            if (r.getEstadoEvento()=="5"){
+            if (r.getEstadoEvento().equals("5")){
+                Log.d("getTasksListHTTP", "Evento con estado 5");
+                Cita cita = new Cita();
+                cita =  db.getAllCitasIdEvento(r.getIdEvento().toString());
 
-              Cita cita =  db.getAllCitasIdEvento(r.getIdEvento().toString());
-                Historia historia = new Historia();
-                historia.setIdEvento(cita.getIdEvento());
-                historia.setDni(cita.getDni());
-                historia.setIdTaller(cita.getIdTaller());
-                historia.setNombreTaller(cita.getNombreTaller());
-                historia.setPlaca(cita.getPlaca());
-                historia.setDireccionTaller(cita.getDireccionTaller());
-                historia.setDiaHoraEvento(cita.getDiaHoraEvento());
-                historia.setIdServicio(cita.getIdServicio());
-                historia.setTipoServicio(cita.getTipoServicio());
-                historia.setPuntuacion("0");
 
-              db.addHistoria(historia);
-              db.deleteCita(cita);
+                    Historia historia = new Historia();
+                    Log.d("getTasksListHTTP", cita.getIdEvento());
+                    historia.setIdEvento(cita.getIdEvento());
+                    historia.setDni(cita.getDni());
+                    historia.setIdTaller(cita.getIdTaller());
+                    historia.setNombreTaller(cita.getNombreTaller());
+                    historia.setPlaca(cita.getPlaca());
+                    historia.setDireccionTaller(cita.getDireccionTaller());
+                    historia.setDiaHoraEvento(cita.getDiaHoraEvento());
+                    historia.setIdServicio(cita.getIdServicio());
+                    historia.setTipoServicio(cita.getTipoServicio());
+                    historia.setPuntuacion("0");
+
+                    db.addHistoria(historia);
+                    db.deleteCita(cita);
+
+
             }
 
         }
