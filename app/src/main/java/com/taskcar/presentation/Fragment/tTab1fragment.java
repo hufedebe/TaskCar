@@ -21,6 +21,8 @@ import com.taskcar.data.entity.tallerEntity;
 import com.taskcar.db.model.Car;
 import com.taskcar.model.Taller;
 import com.taskcar.presentation.Activity.Observaciones;
+import com.taskcar.presentation.Activity.RegisterActivity;
+import com.taskcar.presentation.Activity.RegisterMainActivity;
 import com.taskcar.presentation.Activity.SeleccionarFechaHora;
 import com.taskcar.presentation.Activity.SeleccionarServicio;
 import com.taskcar.presentation.Activity.SeleccionarTaller;
@@ -62,12 +64,73 @@ public class tTab1fragment extends Fragment {
 
     private void poblarListaTalleres(ArrayList<Taller> talleres){
         tallerLists.clear();
+        String aperturaNoctuno;
+        String cierreNocturno;
+        String aperturaExpress;
+        Integer atencionesExpress;
+        String aperturaDiurno;
+        Integer atencionesNocturno;
+        String cierreExpress;
+        Integer atencionesDiurno;
+        String cierreDiurno;
         for (Taller r: talleres){
-            tallerLists.add(new Taller(r.getAperturaNocturno(),r.getLatitud(),r.getCierreNocturno(),
-                                            r.getTelefonoTaller(),r.getAperturaExpress(),r.getAtencionesExpress(),
-                                            r.getAperturaDiurno(),r.getAtencionesNocturno(),r.getCierreExpress(),
-                                            r.getNombreTaller(),r.getLongitud(),r.getPuntuacion(),r.getAtencionesDiurno(), r.getDireccionTaller(),
-                                            r.getIdTaller(),r.getCierreDiurno()));
+
+
+            if (r.getAperturaNocturno()!=null && !r.getAperturaNocturno().isEmpty()) {
+                aperturaNoctuno= r.getAperturaNocturno();
+            }else{
+                aperturaNoctuno="00:00:00";
+            }
+
+            if (r.getCierreNocturno()!=null && !r.getCierreNocturno().isEmpty()) {
+                cierreNocturno= r.getCierreNocturno();
+            }else{
+                cierreNocturno="00:00:00";
+            }
+
+            if (r.getAperturaExpress()!=null && !r.getAperturaExpress().isEmpty()) {
+                aperturaExpress= r.getAperturaExpress();
+            }else{
+                aperturaExpress="00:00:00";
+            }
+
+            if (r.getAtencionesExpress()!=null) {
+                atencionesExpress= r.getAtencionesExpress();
+            }else{
+                atencionesExpress=0;
+            }
+
+            if (r.getAperturaDiurno()!=null && !r.getAperturaDiurno().isEmpty()) {
+                aperturaDiurno= r.getAperturaDiurno();
+            }else{
+                aperturaDiurno="00:00:00";
+            }
+
+            if (r.getAtencionesNocturno()!=null) {
+                atencionesNocturno= r.getAtencionesNocturno();
+            }else{
+                atencionesNocturno=0;
+            }
+            if (r.getCierreExpress()!=null && !r.getCierreExpress().isEmpty()) {
+                cierreExpress= r.getCierreExpress();
+            }else{
+                cierreExpress="00:00:00";
+            }
+            if (r.getAtencionesDiurno()!=null) {
+                atencionesDiurno= r.getAtencionesDiurno();
+            }else{
+                atencionesDiurno=0;
+            }
+            if (r.getCierreDiurno()!=null && !r.getCierreDiurno().isEmpty()) {
+                cierreDiurno= r.getCierreDiurno();
+            }else{
+                cierreDiurno="00:00:00";
+            }
+            tallerLists.add(new Taller(aperturaNoctuno,r.getLatitud(),cierreNocturno,
+                                            r.getTelefonoTaller(),aperturaExpress,atencionesExpress,
+                                            aperturaDiurno,atencionesNocturno,cierreExpress,
+                                            r.getNombreTaller(),r.getLongitud(),r.getPuntuacion(),atencionesDiurno, r.getDireccionTaller(),
+                                            r.getIdTaller(),cierreDiurno));
 
         }
         final TallerList_Adapter adapterTaller = new TallerList_Adapter(getView().getContext(), tallerLists);

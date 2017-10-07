@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.taskcar.db.model.Car;
 import com.taskcar.db.model.Cita;
@@ -343,7 +344,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cita cita = new Cita();
         try {
-            cursor = db.rawQuery("SELECT * FROM"+ TABLE_CITA+"WHERE ID_EVENTO=?", new String[] {idEvento + ""});
+            cursor = db.rawQuery("SELECT * FROM "+ TABLE_CITA+" WHERE ID_EVENTO=?", new String[] {idEvento + ""});
+
             if(cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 cita.setId(Integer.parseInt(cursor.getString(0)));
@@ -356,10 +358,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cita.setDiaHoraEvento(cursor.getString(7));
                 cita.setIdServicio(cursor.getString(8));
                 cita.setTipoServicio(cursor.getString(9));
+                Log.d("getTasksListHTTP", "Retorna"+cursor.getString(1));
+                return cita;
             }
-            return cita;
+
         }finally {
-            cursor.close();
+          return  null;
         }
        // List<Cita> citaList = new ArrayList<Cita>();
         // Select All Query

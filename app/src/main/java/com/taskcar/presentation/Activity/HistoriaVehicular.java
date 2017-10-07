@@ -74,13 +74,16 @@ public class HistoriaVehicular extends AppCompatActivity {
         String bandera;
         for (Evento r: eventos){
             if (r.getEstadoEvento().equals("5")){
-                Log.d("getTasksListHTTP", "Evento con estado 5");
+
                 Cita cita = new Cita();
                 cita =  db.getAllCitasIdEvento(r.getIdEvento().toString());
-
-
+                Log.d("goool", cita.getDni());
+                if(cita ==null) {
+                    Log.d("getTasksListHTTP", "Evento Confirmado");
+                }else{
+                    Log.d("getTasksListHTTP", "Evento Confirmado");
                     Historia historia = new Historia();
-                    Log.d("getTasksListHTTP", cita.getIdEvento());
+
                     historia.setIdEvento(cita.getIdEvento());
                     historia.setDni(cita.getDni());
                     historia.setIdTaller(cita.getIdTaller());
@@ -94,6 +97,8 @@ public class HistoriaVehicular extends AppCompatActivity {
 
                     db.addHistoria(historia);
                     db.deleteCita(cita);
+
+                }
 
 
             }
