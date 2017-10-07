@@ -26,12 +26,13 @@ import retrofit2.Response;
 
 public class HistoriaVehicular extends AppCompatActivity {
 
-    final ArrayList<Historia> eventoList = new ArrayList<>();
+    final ArrayList<Historia> eventoList = new ArrayList<Historia>();
     final DatabaseHelper db = new DatabaseHelper(this);
+    String usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String usuario;
+
         setContentView(R.layout.activity_historia_vehicular);
         if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
             usuario = RegisterMainActivity.dniUsuario;
@@ -41,8 +42,10 @@ public class HistoriaVehicular extends AppCompatActivity {
             usuario = "12345678";
         }
         obtenerHistoriaVehicular();
+        Log.d("Usuario H ", usuario);
         eventoList.clear();
-        eventoList.addAll(db.getAllHistoriaDNI(usuario));
+        eventoList.addAll(db.getAllHistoriaDNI(SeleccionarServicio.placa));
+
 
         HistoriaVehicularList_Adapter adapter_Hitoria = new HistoriaVehicularList_Adapter(this, eventoList);
 
@@ -71,15 +74,14 @@ public class HistoriaVehicular extends AppCompatActivity {
     private void poblarHistoriaVehicular(List<Evento> eventos){
 
 
-        String bandera;
         for (Evento r: eventos){
             if (r.getEstadoEvento().equals("5")){
 
-                Cita cita = new Cita();
+                Cita cita = null;
                 cita =  db.getAllCitasIdEvento(r.getIdEvento().toString());
-                Log.d("goool", cita.getDni());
+                //Log.d("goool", cita.getDni());
                 if(cita ==null) {
-                    Log.d("getTasksListHTTP", "Evento Confirmado");
+                    Log.d("getTasksListHTTP", "Evento Fallado");
                 }else{
                     Log.d("getTasksListHTTP", "Evento Confirmado");
                     Historia historia = new Historia();

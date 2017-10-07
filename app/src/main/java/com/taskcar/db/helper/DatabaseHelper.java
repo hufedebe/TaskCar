@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -25,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     // Database Name
     private static final String DATABASE_NAME = "taskCarManager";
@@ -193,7 +194,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public  void addHistoria(Historia historia){
 
         SQLiteDatabase db = this.getWritableDatabase();
-
+        Log.d("Entra ", "Historia Vehicular");
         ContentValues values = new ContentValues();
         values.put(KEY_EVENTO,historia.getIdEvento());
         values.put(KEY_DNI,historia.getDni());
@@ -265,7 +266,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public  List<Cita> getAllCitasDNI(String dni){
         List<Cita> citaList = new ArrayList<Cita>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE DNI = '"+dni+"'";;
+        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE PLACA = '"+dni+"'";;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -337,35 +338,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public  Cita getAllCitasIdEvento(String idEvento){
+    public  Cita getAllCitasIdEvento(String idEvento) {
 
-
-        Cursor cursor = null;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cita cita = new Cita();
+        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE ID_EVENTO = '" + idEvento + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        //Cita cita = new Cita();
+        Cita cita = null;
         try {
-            cursor = db.rawQuery("SELECT * FROM "+ TABLE_CITA+" WHERE ID_EVENTO=?", new String[] {idEvento + ""});
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    //the .getString(int x) method of the cursor returns the column
+                    //of the table your query returned
+                    cita = new Cita(Integer.parseInt(cursor.getString(0)),
+                            cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                            cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8));
+                    // Adding contact to list
 
-            if(cursor.getCount() > 0) {
-                cursor.moveToFirst();
-                cita.setId(Integer.parseInt(cursor.getString(0)));
-                cita.setIdEvento(cursor.getString(1));
-                cita.setDni(cursor.getString(2));
-                cita.setIdTaller(cursor.getString(3));
-                cita.setNombreTaller(cursor.getString(4));
-                cita.setPlaca(cursor.getString(5));
-                cita.setDireccionTaller(cursor.getString(6));
-                cita.setDiaHoraEvento(cursor.getString(7));
-                cita.setIdServicio(cursor.getString(8));
-                cita.setTipoServicio(cursor.getString(9));
-                Log.d("getTasksListHTTP", "Retorna"+cursor.getString(1));
-                return cita;
+                } while (cursor.moveToNext());
             }
-
-        }finally {
-          return  null;
+        } catch (SQLiteException e) {
+            Log.d("SQL Error", e.getMessage());
+            return null;
+        } finally {
+            //release all your resources
+            cursor.close();
+            db.close();
         }
-       // List<Cita> citaList = new ArrayList<Cita>();
+        return cita;
+        // List<Cita> citaList = new ArrayList<Cita>();
         // Select All Query
         /*
         String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE ID_EVENTO = '"+idEvento+"'";;

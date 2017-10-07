@@ -73,6 +73,7 @@ public class tTab1fragment extends Fragment {
         String cierreExpress;
         Integer atencionesDiurno;
         String cierreDiurno;
+        Integer puntuacion;
         for (Taller r: talleres){
 
 
@@ -111,6 +112,12 @@ public class tTab1fragment extends Fragment {
             }else{
                 atencionesNocturno=0;
             }
+
+            if (r.getPuntuacion()!=null) {
+                puntuacion= r.getPuntuacion();
+            }else{
+                puntuacion=0;
+            }
             if (r.getCierreExpress()!=null && !r.getCierreExpress().isEmpty()) {
                 cierreExpress= r.getCierreExpress();
             }else{
@@ -129,7 +136,7 @@ public class tTab1fragment extends Fragment {
             tallerLists.add(new Taller(aperturaNoctuno,r.getLatitud(),cierreNocturno,
                                             r.getTelefonoTaller(),aperturaExpress,atencionesExpress,
                                             aperturaDiurno,atencionesNocturno,cierreExpress,
-                                            r.getNombreTaller(),r.getLongitud(),r.getPuntuacion(),atencionesDiurno, r.getDireccionTaller(),
+                                            r.getNombreTaller(),r.getLongitud(),puntuacion,atencionesDiurno, r.getDireccionTaller(),
                                             r.getIdTaller(),cierreDiurno));
 
         }
