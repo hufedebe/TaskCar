@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     // Database Name
     private static final String DATABASE_NAME = "taskCarManager";
@@ -301,7 +301,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public  List<Historia> getAllHistoriaDNI(String dni){
         List<Historia> historiaList = new ArrayList<Historia>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_HISTORIA + " WHERE PLACA = '"+dni+"'";;
+        String selectQuery = "SELECT  * FROM " + TABLE_HISTORIA + " WHERE DNI = '"+dni+"'";;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -351,9 +351,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 do {
                     //the .getString(int x) method of the cursor returns the column
                     //of the table your query returned
-                    cita = new Cita(Integer.parseInt(cursor.getString(0)),
-                            cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                            cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8));
+                    //;cita = new Cita(Integer.parseInt(cursor.getString(0)),
+                      //      cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        //    cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8));
+                    //Cita cita = new Cita();
+                    cita=new Cita();
+                    cita.setId(Integer.parseInt(cursor.getString(0)));
+                    cita.setIdEvento(cursor.getString(1));
+                    cita.setDni(cursor.getString(2));
+                    cita.setIdTaller(cursor.getString(3));
+                    cita.setNombreTaller(cursor.getString(4));
+                    cita.setPlaca(cursor.getString(5));
+                    cita.setDireccionTaller(cursor.getString(6));
+                    cita.setDiaHoraEvento(cursor.getString(7));
+                    cita.setIdServicio(cursor.getString(8));
+                    cita.setTipoServicio(cursor.getString(9));
                     // Adding contact to list
 
                 } while (cursor.moveToNext());
@@ -367,30 +379,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
         return cita;
-        // List<Cita> citaList = new ArrayList<Cita>();
-        // Select All Query
-        /*
-        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE ID_EVENTO = '"+idEvento+"'";;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        Cita cita = new Cita();
-        if (cursor.moveToFirst()){
-            // do the
-
-            cita.setId(Integer.parseInt(cursor.getString(0)));
-            cita.setIdEvento(cursor.getString(1));
-            cita.setDni(cursor.getString(2));
-            cita.setIdTaller(cursor.getString(3));
-            cita.setNombreTaller(cursor.getString(4));
-            cita.setPlaca(cursor.getString(5));
-            cita.setDireccionTaller(cursor.getString(6));
-            cita.setDiaHoraEvento(cursor.getString(7));
-            cita.setIdServicio(cursor.getString(8));
-            cita.setTipoServicio(cursor.getString(9));
-        }
-  */
-
 
     }
     // Getting All Vehiculos

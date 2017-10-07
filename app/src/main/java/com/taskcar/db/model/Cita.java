@@ -35,6 +35,7 @@ public class Cita {
         this.setIdServicio(idServicio);
         this.setTipoServicio(tipoServicio);
     }
+    /*
     public Cita( String idEvento, String idTaller,String nombreTaller,String direccionTaller, String placa,
                 String diaHoraEvento, String idServicio, String tipoServicio){
 
@@ -48,7 +49,7 @@ public class Cita {
         this.setIdServicio(idServicio);
         this.setTipoServicio(tipoServicio);
     }
-
+*/
     public Cita( String idEvento,String dni, String idTaller,String nombreTaller,String direccionTaller, String placa,
                  String diaHoraEvento, String idServicio, String tipoServicio){
 

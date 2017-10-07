@@ -44,7 +44,7 @@ public class HistoriaVehicular extends AppCompatActivity {
         obtenerHistoriaVehicular();
         Log.d("Usuario H ", usuario);
         eventoList.clear();
-        eventoList.addAll(db.getAllHistoriaDNI(SeleccionarServicio.placa));
+        eventoList.addAll(db.getAllHistoriaDNI(usuario));
 
 
         HistoriaVehicularList_Adapter adapter_Hitoria = new HistoriaVehicularList_Adapter(this, eventoList);

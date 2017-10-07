@@ -15,6 +15,8 @@ import com.taskcar.R;
 import com.taskcar.data.entity.CitaEntity;
 import com.taskcar.db.model.Cita;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -53,8 +55,10 @@ public class CitaList_Adapter extends ArrayAdapter {
         TextView direccionTaller = (TextView) listItemView.findViewById(R.id.direccion_text_view);
         TextView horario = (TextView) listItemView.findViewById(R.id.horario_text_view);
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
+        TextView numeralCita = (TextView)listItemView.findViewById(R.id.numeral_cita);
         Log.d("getTasksListHTTP", "Taller" + currentCita.getNombreTaller());
 
+        numeralCita.setText("Cita "+ (position+1)+" :");
         nombreTaller.setText(currentCita.getNombreTaller());
 
         direccionTaller.setText(currentCita.getDireccionTaller());
