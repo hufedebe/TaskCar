@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.taskcar.R;
@@ -61,6 +62,8 @@ public class HorarioList_Adapter extends ArrayAdapter{
 
 
         TextView horario = (TextView) listItemView.findViewById(R.id.txt_horario);
+
+
         horario.setText(currentHorario.getHorario());
 
 

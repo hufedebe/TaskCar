@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.taskcar.R;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 public class HistoriaVehicularList_Adapter extends ArrayAdapter {
 
-
+    public RatingBar ratingBar;
     private int amImageResourceId;
     public HistoriaVehicularList_Adapter(Context context, ArrayList<Historia> historia ){
         super(context, 0 , historia);
@@ -50,7 +51,7 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
         TextView horario = (TextView) listItemView.findViewById(R.id.horario_text_view);
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
 
-
+        ratingBar = (RatingBar) listItemView.findViewById(R.id.rating);
         nombreTaller.setText(currentHistoria.getNombreTaller());
         direccionTaller.setText(currentHistoria.getDireccionTaller());
         horario.setText(currentHistoria.getDiaHoraEvento());

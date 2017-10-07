@@ -178,7 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_EVENTO,cita.getIdEvento());
         values.put(KEY_DNI,cita.getDni());
         values.put(KEY_TALLER,cita.getIdTaller());
-        values.put(KEY_TALLER, cita.getNombreTaller());
+        values.put(KEY_NOMBRE_TALLER, cita.getNombreTaller());
         values.put(KEY_PLACA, cita.getPlaca()); // Contact Name
         values.put(KEY_DESCRIPCION_TALLER,cita.getDireccionTaller());
         values.put(KEY_FECHA_EVENTO, cita.getDiaHoraEvento());

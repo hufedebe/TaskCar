@@ -162,10 +162,10 @@ public class SeleccionarFechaHora extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String vmonth,vday,vyear;
 
-                if(month<10){
-                    vmonth="0"+String.valueOf(month);
+                if((month+1)<10){
+                    vmonth="0"+String.valueOf(month+1);
                 }else{
-                    vmonth=String.valueOf(month);
+                    vmonth=String.valueOf(month+1);
                 }
                 if(dayOfMonth<10){
                     vday="0"+String.valueOf(dayOfMonth);
