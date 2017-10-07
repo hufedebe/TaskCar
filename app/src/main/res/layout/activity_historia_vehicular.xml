@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Buenas tardes Ronald, estas son tus citas pasadas:"
+                android:text="Buenas tardes , estas son tus citas pasadas:"
                 android:textSize="20dp"/>
 
 
