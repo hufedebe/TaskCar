@@ -2,11 +2,13 @@ package com.taskcar.retrofit;
 
 import com.taskcar.model.CitaPost;
 import com.taskcar.model.LoginPost;
+import com.taskcar.model.PuntuacionPost;
 import com.taskcar.model.RegistroPost;
 import com.taskcar.model.VehiculoPost;
 import com.taskcar.retrofit.Response.CitaResponse;
 import com.taskcar.retrofit.Response.ListarEventosResponse;
 import com.taskcar.retrofit.Response.LoginResponse;
+import com.taskcar.retrofit.Response.PuntuacionResponse;
 import com.taskcar.retrofit.Response.RegistroResponse;
 import com.taskcar.retrofit.Response.ServiciosResponse;
 import com.taskcar.retrofit.Response.TalleresResponse;
@@ -47,7 +49,8 @@ public interface AtencionVehicularService {
     @GET("listarEventos")
     Call<ListarEventosResponse> geListarEventos(@Query("placa") String placa);
 
-
+    @POST("setearPuntuacion")
+    Call<PuntuacionResponse> postSetearPuntuacion(@Body PuntuacionPost puntuacionPost);
 
 
 
