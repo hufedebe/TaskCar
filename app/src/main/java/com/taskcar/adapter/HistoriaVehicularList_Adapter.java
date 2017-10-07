@@ -67,13 +67,14 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
         TextView direccionTaller = (TextView) listItemView.findViewById(R.id.direccion_text_view);
         TextView horario = (TextView) listItemView.findViewById(R.id.horario_text_view);
         TextView placa = (TextView) listItemView.findViewById(R.id.placa_text_view);
+        TextView fechaCita = (TextView) listItemView.findViewById(R.id.fecha_cita);
 
         ratingBar = (RatingBar) listItemView.findViewById(R.id.rating);
         nombreTaller.setText(currentHistoria.getNombreTaller());
         direccionTaller.setText(currentHistoria.getDireccionTaller());
         horario.setText(currentHistoria.getDiaHoraEvento());
         placa.setText(currentHistoria.getPlaca());
-
+        fechaCita.setText(currentHistoria.getDiaHoraEvento().substring(0,8));
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
