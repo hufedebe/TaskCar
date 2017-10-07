@@ -266,7 +266,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public  List<Cita> getAllCitasDNI(String dni){
         List<Cita> citaList = new ArrayList<Cita>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE PLACA = '"+dni+"'";;
+        String selectQuery = "SELECT  * FROM " + TABLE_CITA + " WHERE DNI = '"+dni+"'";;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -301,7 +301,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public  List<Historia> getAllHistoriaDNI(String dni){
         List<Historia> historiaList = new ArrayList<Historia>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_HISTORIA + " WHERE DNI = '"+dni+"'";;
+        String selectQuery = "SELECT  * FROM " + TABLE_HISTORIA + " WHERE PLACA = '"+dni+"'";;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
