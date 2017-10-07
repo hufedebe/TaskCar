@@ -174,7 +174,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                 }
                 vyear= String.valueOf(year);
                 curDate=vday+"/"+vmonth+"/"+vyear;
-                Toast.makeText(getApplicationContext(), curDate, Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), curDate, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -191,10 +191,11 @@ public class SeleccionarFechaHora extends AppCompatActivity {
 
 
                 // curDate = sdf.format(calendarView.getDate());
-
+                String restoHora;
                 String data = horarioList.get(positiond).getHorario();
                 String hora = data;
                 data = data.substring(0,5);
+                restoHora= data.substring(2,5);
                 hora = hora.substring(0,2);
                 if (Integer.parseInt(hora)<=12){
                     if(curDate !=null && !curDate.isEmpty()){
@@ -205,7 +206,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
                     }
                 }else{
                     if(curDate !=null && !curDate.isEmpty()){
-
+                        data="0"+String.valueOf(Integer.parseInt(hora)-12)+restoHora;
                         horarioCita = curDate + " " + data + " PM";
                     }else {
                         horarioCita = dia + "/" + mes + "/" + ano + " " + data + " PM";
