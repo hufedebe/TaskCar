@@ -21,6 +21,7 @@ import com.taskcar.presentation.Activity.SeleccionarServicio;
 import com.taskcar.presentation.Activity.SeleccionarVehiculo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -85,6 +86,27 @@ public class CarList_Adapter extends ArrayAdapter {
 
 
         ImageView iconView = (ImageView)listItemView.findViewById(R.id.image);
+        if(currentCar.getMarca().equals("Changan")){
+            iconView.setImageResource(R.drawable.logo_changan);
+        }else if(currentCar.getMarca().equals("Citroen")){
+            iconView.setImageResource(R.drawable.logo_citroen);
+        }else if(currentCar.getMarca().equals("DS")){
+            iconView.setImageResource(R.drawable.logo_ds);
+        }else if(currentCar.getMarca().equals("Foton")){
+            iconView.setImageResource(R.drawable.logo_foton);
+        }else if(currentCar.getMarca().equals("Great Wall")){
+            iconView.setImageResource(R.drawable.logo_greatwall);
+        }else if(currentCar.getMarca().equals("Haval")){
+            iconView.setImageResource(R.drawable.logo_haval);
+        }else if(currentCar.getMarca().equals("Jac")){
+            iconView.setImageResource(R.drawable.logo_jac);
+        }else if(currentCar.getMarca().equals("Mazda")){
+            iconView.setImageResource(R.drawable.logo_mazda);
+        }else if(currentCar.getMarca().equals("Suzuki")){
+            iconView.setImageResource(R.drawable.logo_suzuli);
+        }else{
+            iconView.setImageResource(R.drawable.ic_concecionario);
+        }
 
         //Cogiendo botoenes:
         final ImageButton modificarBtn = (ImageButton)listItemView.findViewById(R.id.modificar);

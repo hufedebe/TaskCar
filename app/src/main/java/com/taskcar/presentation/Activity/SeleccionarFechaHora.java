@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -56,6 +57,7 @@ public class SeleccionarFechaHora extends AppCompatActivity {
     String curDate;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +71,13 @@ public class SeleccionarFechaHora extends AppCompatActivity {
         nombreTaller = getResults.getStringExtra("nombreTaller");
          direccionTaller = getResults.getStringExtra("direccionTaller");
 
-        calendarView = (CalendarView) findViewById(R.id.calendar);
+        android.icu.util.Calendar c = android.icu.util.Calendar.getInstance();
 
+        Long min = c.getTime().getTime();
+       // Long max = 2629746000L + c.getTime().getTime();
+
+        calendarView = (CalendarView) findViewById(R.id.calendar);
+        calendarView.setMinDate(min);
         //Validación del usuario
         if (RegisterMainActivity.dniUsuario!=null && !RegisterMainActivity.dniUsuario.isEmpty()){
             usuario = RegisterMainActivity.dniUsuario;

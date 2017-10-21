@@ -74,7 +74,7 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
         direccionTaller.setText(currentHistoria.getDireccionTaller());
         horario.setText(currentHistoria.getDiaHoraEvento());
         placa.setText(currentHistoria.getPlaca());
-        fechaCita.setText(currentHistoria.getDiaHoraEvento().substring(0,8));
+        fechaCita.setText(currentHistoria.getDiaHoraEvento().substring(0,10));
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
@@ -84,31 +84,10 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
 
                 Call<PuntuacionResponse> call = AtencionVehicularAdapter.getApiService().postSetearPuntuacion(puntuacionPost);
                 call.enqueue(new PuntuacionCallback());
+
             }
         });
-        /*
-        ratingBar.setOnTouchListener(new View.OnTouchListener() {
-                 @Override
-                 public boolean onTouch(View v, MotionEvent event) {
-                     if (event.getAction() == MotionEvent.ACTION_UP) {
-                         PuntuacionPost puntuacionPost = new PuntuacionPost(currentHistoria.getIdEvento().toString(), Integer.toString((int)ratingBar.getRating()), "Todo bien");
 
-                         Call<PuntuacionResponse> call = AtencionVehicularAdapter.getApiService().postSetearPuntuacion(puntuacionPost);
-                         call.enqueue(new PuntuacionCallback());
-                     }
-                     return true;
-                 }
-
-                                     }); */
-
-       // View textContainer = listItemView.findViewById(R.id.text_container);
-        //int color = ContextCompat.getColor(getContext(),amImageResourceId);
-        //textContainer.setBackgroundColor(-1);
-        //iconView.setImageResource(currentWord.getmImageResourceId());
-
-
-        // Return the whole list item layout (containing 2 TextViews and an ImageView)
-        // so that it can be shown in the ListView
         return listItemView;
 
     }
@@ -123,6 +102,7 @@ public class HistoriaVehicularList_Adapter extends ArrayAdapter {
 
                      Toast.makeText(getApplicationContext(),"Puntuación Enviada Correctamente", Toast.LENGTH_LONG).show();
 
+                     //ratingBar.setIsIndicator(true);
 
                  }else{
 
